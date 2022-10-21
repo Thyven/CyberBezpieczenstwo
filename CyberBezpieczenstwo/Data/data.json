@@ -1,0 +1,14 @@
+[
+  {
+    "userID": 1,
+    "username": "U1",
+    "password": "a!",
+    "passwordExpireDate": "09/12/2013"
+  },
+  {
+    "userID": 2,
+    "username": "U2",
+    "password": "b!",
+    "passwordExpireDate": "09/12/2013"
+  }
+]
