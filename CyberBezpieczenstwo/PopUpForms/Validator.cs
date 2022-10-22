@@ -29,6 +29,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         {
             var userName = textBoxUsername.Text;
             var userPassord = textBoxPassword.Text;
+            int userID = 0;
             
             // username and password must add up
             int numberOfMatches = 0;
@@ -36,18 +37,22 @@ namespace CyberBezpieczenstwo.PopUpForms
 
 
             // Check username and password
-            data.LoadJson();
+            data.LoadJson("data.json");
 
             for (int i = 0; i < data.items.Count; i++)
             {
                 if (userName == data.items[i].username) numberOfMatches++;
                 if (userPassord == data.items[i].password) numberOfMatches++;
                
-                Debug.WriteLine("1");
                 if (numberOfMatches == 2)
                 {
+                    userID = data.items[i].userID;
+
+                    if (data.items[i].role == "Admin")
+                    {
+                        this.mainForm.isAdmin = true;
+                    }
                     canPass = true;
-                    Debug.WriteLine("2");
                     break;
                 }
 
@@ -74,8 +79,8 @@ namespace CyberBezpieczenstwo.PopUpForms
             if (RegexOK && canPass)
             {
                 // Actions
-
                 this.mainForm.userName = userName;
+                this.mainForm.userID = userID;
                 this.mainForm.Refresh();
 
                 // Closing

@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
             this.buttonChangePassword = new System.Windows.Forms.Button();
+            this.labeAdmin = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -62,11 +63,22 @@
             this.buttonChangePassword.UseVisualStyleBackColor = true;
             this.buttonChangePassword.Click += new System.EventHandler(this.buttonChangePassword_Click);
             // 
+            // labeAdmin
+            // 
+            this.labeAdmin.AutoSize = true;
+            this.labeAdmin.Location = new System.Drawing.Point(481, 21);
+            this.labeAdmin.Name = "labeAdmin";
+            this.labeAdmin.Size = new System.Drawing.Size(71, 15);
+            this.labeAdmin.TabIndex = 3;
+            this.labeAdmin.Text = "AdminLabel";
+            this.labeAdmin.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labeAdmin);
             this.Controls.Add(this.buttonChangePassword);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.label1);
@@ -83,5 +95,6 @@
         private Label label1;
         private Label labelUsername;
         private Button buttonChangePassword;
+        private Label labeAdmin;
     }
 }

@@ -16,15 +16,17 @@ namespace CyberBezpieczenstwo.Data
             public string username;
             public string password;
             public string passwordExpireDate;
+            public string role;
+            public List<string> oldPasswords;
         }
 
         public List<userData> items;
 
         // !!!! przerzućcie "plik.json" na Pulpit, jak na ta chwilę takie rozwiązanie.
-        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "data.json");
         // handle data form JSON
-        public void LoadJson()
+        public void LoadJson(string fileName)
         {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
             using (StreamReader r = new StreamReader(path))
             {
                 string json = r.ReadToEnd();
@@ -32,11 +34,21 @@ namespace CyberBezpieczenstwo.Data
             }
         }
 
+        public void SaveJson()
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "data.json");
+            var json = JsonConvert.SerializeObject(items);
+            File.WriteAllText(path, json);
+        }
+
         public void DebugData()
         {
-            Debug.WriteLine(items[0].passwordExpireDate);
-            Debug.WriteLine(items[1].passwordExpireDate);
+            Debug.WriteLine(items[0].oldPasswords[0]);
+            Debug.WriteLine(items[1].oldPasswords[1]);
         }
+
+
+
 
        
 

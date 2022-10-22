@@ -12,22 +12,20 @@ namespace CyberBezpieczenstwo
 
         DataHandler data = new DataHandler();
 
+        public int userID;
         public string userName;
+        public bool isAdmin = false;
 
         public void Refresh()
         {
             labelUsername.Text = userName;
+
+            if (isAdmin)
+            {
+                labeAdmin.Visible = true;
+            }
+
         }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -36,6 +34,9 @@ namespace CyberBezpieczenstwo
             Validator valdiator = new Validator(this);
             valdiator.Show();
             this.Enabled = false;
+
+          //  data.LoadJson("data.json");
+          //  data.DebugData();
 
         }
 
