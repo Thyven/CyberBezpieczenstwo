@@ -33,13 +33,12 @@ namespace CyberBezpieczenstwo.PopUpForms
             string userPassordRe = textBoxNewPasswordRepeat.Text;
             bool oldPassOK = false;
             bool newPassMatch = false;
-            data.LoadJson("data.json");
 
             for (int i = 0; i < data.items.Count; i++)
             {
-                Debug.WriteLine($"userID:{this.mainForm.userID}");
+                Debug.WriteLine($"userID:{this.mainForm.loggedUser.userID}");
 
-                if (data.items[i].userID == this.mainForm.userID)
+                if (data.items[i].userID == this.mainForm.loggedUser.userID)
                 {
                 Debug.WriteLine("2");
                     if (data.items[i].password != oldPassword)
@@ -66,9 +65,9 @@ namespace CyberBezpieczenstwo.PopUpForms
 
                 if (userPassord != oldPassword)
                 {
-                    for (int i = 0; i < data.items[this.mainForm.userID - 1].oldPasswords.Count; i++)
+                    for (int i = 0; i < data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Count; i++)
                     {
-                        if (data.items[this.mainForm.userID - 1].oldPasswords[i] == userPassord)
+                        if (data.items[this.mainForm.loggedUser.userID - 1].oldPasswords[i] == userPassord)
                         {
                             newPassMatch = false;
                             Debug.WriteLine("TODO labelka ze takie haslo juz bylo");
@@ -106,8 +105,8 @@ namespace CyberBezpieczenstwo.PopUpForms
                 Debug.WriteLine("feuer frei");
 
                 // Change password json logic
-                data.items[this.mainForm.userID - 1].password = userPassord;
-                data.items[this.mainForm.userID - 1].oldPasswords.Add(oldPassword);
+                data.items[this.mainForm.loggedUser.userID - 1].password = userPassord;
+                data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Add(oldPassword);
 
                 data.SaveJson();
 

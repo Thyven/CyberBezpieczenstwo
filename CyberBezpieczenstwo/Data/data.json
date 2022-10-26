@@ -1,14 +1,1 @@
-[
-  {
-    "userID": 1,
-    "username": "A",
-    "password": "a!",
-    "passwordExpireDate": "09/12/2023"
-  },
-  {
-    "userID": 2,
-    "username": "U",
-    "password": "u!",
-    "passwordExpireDate": "09/12/2022"
-  }
-]
+[{"userID":1,"username":"A","password":"b!","passwordExpireDate":"09/12/2023","role":"admin","oldPasswords":null},{"userID":3,"username":"DD","password":"s!","passwordExpireDate":null,"role":"user","oldPasswords":null}]

@@ -4,7 +4,7 @@ admin:
  zmienia swoje hasło (po poprawnym poprzednim)
  modyfikowac dane userow (username i password)
  dodawac nowych userow
- przegladac userow
+ przegladac userow 
  blokowac konta userow i blowkac ogranicznie hasel (wyłanczamy reguły i mozna dac np. haslo admin1 ?)
  usuwac konta userow
  (globalnie) właczyc/wyłączyc regexa do haseł

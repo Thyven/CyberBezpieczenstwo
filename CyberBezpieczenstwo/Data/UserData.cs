@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CyberBezpieczenstwo.Data
+{
+    public class UserData
+    {
+        public int userID;
+        public string username;
+        public string password;
+        public string passwordExpireDate;
+        public string role;
+        public List<string> oldPasswords;
+
+        public override string ToString()
+        {
+            return userID + " " + username + " " + role;
+        }
+    }
+}

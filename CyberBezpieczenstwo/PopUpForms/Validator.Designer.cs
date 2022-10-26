@@ -42,24 +42,27 @@
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(77, 50);
+            this.textBoxUsername.Location = new System.Drawing.Point(88, 67);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(100, 23);
+            this.textBoxUsername.Size = new System.Drawing.Size(114, 27);
             this.textBoxUsername.TabIndex = 0;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(77, 79);
+            this.textBoxPassword.Location = new System.Drawing.Point(88, 105);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(100, 23);
+            this.textBoxPassword.Size = new System.Drawing.Size(114, 27);
             this.textBoxPassword.TabIndex = 1;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(77, 117);
+            this.buttonSubmit.Location = new System.Drawing.Point(88, 156);
+            this.buttonSubmit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(75, 23);
+            this.buttonSubmit.Size = new System.Drawing.Size(86, 31);
             this.buttonSubmit.TabIndex = 2;
             this.buttonSubmit.Text = "Login";
             this.buttonSubmit.UseVisualStyleBackColor = true;
@@ -68,18 +71,18 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(12, 53);
+            this.labelUsername.Location = new System.Drawing.Point(14, 71);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(60, 15);
+            this.labelUsername.Size = new System.Drawing.Size(75, 20);
             this.labelUsername.TabIndex = 3;
             this.labelUsername.Text = "Username";
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(12, 82);
+            this.labelPassword.Location = new System.Drawing.Point(14, 109);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(57, 15);
+            this.labelPassword.Size = new System.Drawing.Size(70, 20);
             this.labelPassword.TabIndex = 4;
             this.labelPassword.Text = "Password";
             // 
@@ -88,9 +91,9 @@
             this.labelValidaterRegex.AutoSize = true;
             this.labelValidaterRegex.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelValidaterRegex.ForeColor = System.Drawing.Color.Maroon;
-            this.labelValidaterRegex.Location = new System.Drawing.Point(12, 155);
+            this.labelValidaterRegex.Location = new System.Drawing.Point(14, 207);
             this.labelValidaterRegex.Name = "labelValidaterRegex";
-            this.labelValidaterRegex.Size = new System.Drawing.Size(131, 25);
+            this.labelValidaterRegex.Size = new System.Drawing.Size(164, 32);
             this.labelValidaterRegex.TabIndex = 5;
             this.labelValidaterRegex.Text = "Wrong regex";
             this.labelValidaterRegex.Visible = false;
@@ -100,18 +103,18 @@
             this.labelValidateUsrPass.AutoSize = true;
             this.labelValidateUsrPass.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelValidateUsrPass.ForeColor = System.Drawing.Color.Maroon;
-            this.labelValidateUsrPass.Location = new System.Drawing.Point(12, 198);
+            this.labelValidateUsrPass.Location = new System.Drawing.Point(14, 264);
             this.labelValidateUsrPass.Name = "labelValidateUsrPass";
-            this.labelValidateUsrPass.Size = new System.Drawing.Size(272, 25);
+            this.labelValidateUsrPass.Size = new System.Drawing.Size(347, 32);
             this.labelValidateUsrPass.TabIndex = 6;
             this.labelValidateUsrPass.Text = "Wrong Username / Password";
             this.labelValidateUsrPass.Visible = false;
             // 
             // Validator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 244);
+            this.ClientSize = new System.Drawing.Size(343, 325);
             this.Controls.Add(this.labelValidateUsrPass);
             this.Controls.Add(this.labelValidaterRegex);
             this.Controls.Add(this.labelPassword);
@@ -119,11 +122,13 @@
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUsername);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Validator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Validator";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Validator_FormClosing);
+            this.Load += new System.EventHandler(this.Validator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

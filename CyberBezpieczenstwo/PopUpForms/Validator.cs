@@ -17,11 +17,12 @@ namespace CyberBezpieczenstwo.PopUpForms
     {
         // Reverse control main form
         private MainForm mainForm;
-        DataHandler data = new DataHandler();
+        DataHandler data;
 
         public Validator(MainForm parent)
         {
             mainForm = parent as MainForm;
+            data = new DataHandler();
             InitializeComponent();
             
         }
@@ -29,41 +30,16 @@ namespace CyberBezpieczenstwo.PopUpForms
         {
             var userName = textBoxUsername.Text;
             var userPassord = textBoxPassword.Text;
-            int userID = 0;
             
             // username and password must add up
-            int numberOfMatches = 0;
-            bool canPass = false;
+            bool canPass;
 
-
-            // Check username and password
-            data.LoadJson("data.json");
-
-            for (int i = 0; i < data.items.Count; i++)
-            {
-                if (userName == data.items[i].username) numberOfMatches++;
-                if (userPassord == data.items[i].password) numberOfMatches++;
-               
-                if (numberOfMatches == 2)
-                {
-                    userID = data.items[i].userID;
-
-                    if (data.items[i].role == "Admin")
-                    {
-                        this.mainForm.isAdmin = true;
-                    }
-                    canPass = true;
-                    break;
-                }
-
-                numberOfMatches = 0;
-            }
+            var validate = new Validate();
+            if (validate.ifUserExist(userName, userPassord)) canPass = true;
+            else canPass = false;
 
             // check regex
-            string regexPattern = @"(?=.*[a-z])(?=.*\W)";
-            Regex regexSN = new Regex(regexPattern, RegexOptions.IgnoreCase);
-            var RegexOK = regexSN.IsMatch(userPassord);
-
+            var RegexOK = validate.checkRegex(userPassord);
             if (!RegexOK)
             {
                 labelValidaterRegex.Visible = true;
@@ -79,8 +55,7 @@ namespace CyberBezpieczenstwo.PopUpForms
             if (RegexOK && canPass)
             {
                 // Actions
-                this.mainForm.userName = userName;
-                this.mainForm.userID = userID;
+                this.mainForm.loggedUser = data.GetUsers().Where(x => x.username == userName).First();
                 this.mainForm.Refresh();
 
                 // Closing
@@ -117,6 +92,11 @@ namespace CyberBezpieczenstwo.PopUpForms
         private void Validator_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.mainForm.Enabled = true;
+
+        }
+
+        private void Validator_Load(object sender, EventArgs e)
+        {
 
         }
     }
