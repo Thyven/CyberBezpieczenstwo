@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,53 +18,39 @@ namespace CyberBezpieczenstwo.PopUpForms
     {
         // Reverse control main form
         private MainForm mainForm;
-        DataHandler data = new DataHandler();
+        DataHandler data;
+
+        bool preventParentClosing;
 
         public Validator(MainForm parent)
         {
             mainForm = parent as MainForm;
+            data = new DataHandler();
+
+            this.CenterToParent();
             InitializeComponent();
-            
+
+
         }
         private void checkForm()
         {
             var userName = textBoxUsername.Text;
             var userPassord = textBoxPassword.Text;
-            int userID = 0;
-            
+
+            userPassord = HashString(userPassord);
+            Debug.WriteLine(userPassord);
+
             // username and password must add up
-            int numberOfMatches = 0;
-            bool canPass = false;
+            bool canPass;
 
-
-            // Check username and password
-            data.LoadJson("data.json");
-
-            for (int i = 0; i < data.items.Count; i++)
-            {
-                if (userName == data.items[i].username) numberOfMatches++;
-                if (userPassord == data.items[i].password) numberOfMatches++;
-               
-                if (numberOfMatches == 2)
-                {
-                    userID = data.items[i].userID;
-
-                    if (data.items[i].role == "Admin")
-                    {
-                        this.mainForm.isAdmin = true;
-                    }
-                    canPass = true;
-                    break;
-                }
-
-                numberOfMatches = 0;
-            }
+            var validate = new Validate();
+            if (validate.ifUserExist(userName, userPassord)) canPass = true;
+            else canPass = false;
 
             // check regex
-            string regexPattern = @"(?=.*[a-z])(?=.*\W)";
-            Regex regexSN = new Regex(regexPattern, RegexOptions.IgnoreCase);
-            var RegexOK = regexSN.IsMatch(userPassord);
+            var RegexOK = validate.checkRegex(userPassord, mainForm.isRegexNeeded);
 
+            
             if (!RegexOK)
             {
                 labelValidaterRegex.Visible = true;
@@ -79,11 +66,12 @@ namespace CyberBezpieczenstwo.PopUpForms
             if (RegexOK && canPass)
             {
                 // Actions
-                this.mainForm.userName = userName;
-                this.mainForm.userID = userID;
+                this.mainForm.loggedUser = data.GetUsers().Where(x => x.username == userName).First();
                 this.mainForm.Refresh();
+                this.mainForm.CheckDateExpiration();
 
                 // Closing
+                preventParentClosing = true;
                 this.mainForm.Enabled = true;
                 this.Close();
             }
@@ -105,9 +93,20 @@ namespace CyberBezpieczenstwo.PopUpForms
             }
             catch (Exception)
             {
-
             }
         }
+
+        private string HashString(string input)
+        {
+            string outputString;
+
+            byte[] buffer = Encoding.UTF8.GetBytes(input);
+            byte[] hashedData = SHA256.HashData(buffer);
+            outputString = Encoding.UTF8.GetString(hashedData, 0, hashedData.Length);
+
+            return outputString;
+        }
+
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
@@ -116,7 +115,11 @@ namespace CyberBezpieczenstwo.PopUpForms
 
         private void Validator_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.mainForm.Enabled = true;
+
+            if (preventParentClosing == false)
+            {
+                this.mainForm.Close();
+            }
 
         }
     }
