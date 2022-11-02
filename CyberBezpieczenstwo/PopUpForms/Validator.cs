@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,18 +20,26 @@ namespace CyberBezpieczenstwo.PopUpForms
         private MainForm mainForm;
         DataHandler data;
 
+        bool preventParentClosing;
+
         public Validator(MainForm parent)
         {
             mainForm = parent as MainForm;
             data = new DataHandler();
+
+            this.CenterToParent();
             InitializeComponent();
-            
+
+
         }
         private void checkForm()
         {
             var userName = textBoxUsername.Text;
             var userPassord = textBoxPassword.Text;
-            
+
+            userPassord = HashString(userPassord);
+            Debug.WriteLine(userPassord);
+
             // username and password must add up
             bool canPass;
 
@@ -39,7 +48,9 @@ namespace CyberBezpieczenstwo.PopUpForms
             else canPass = false;
 
             // check regex
-            var RegexOK = validate.checkRegex(userPassord);
+            var RegexOK = validate.checkRegex(userPassord, mainForm.isRegexNeeded);
+
+            
             if (!RegexOK)
             {
                 labelValidaterRegex.Visible = true;
@@ -57,8 +68,10 @@ namespace CyberBezpieczenstwo.PopUpForms
                 // Actions
                 this.mainForm.loggedUser = data.GetUsers().Where(x => x.username == userName).First();
                 this.mainForm.Refresh();
+                this.mainForm.CheckDateExpiration();
 
                 // Closing
+                preventParentClosing = true;
                 this.mainForm.Enabled = true;
                 this.Close();
             }
@@ -80,9 +93,20 @@ namespace CyberBezpieczenstwo.PopUpForms
             }
             catch (Exception)
             {
-
             }
         }
+
+        private string HashString(string input)
+        {
+            string outputString;
+
+            byte[] buffer = Encoding.UTF8.GetBytes(input);
+            byte[] hashedData = SHA256.HashData(buffer);
+            outputString = Encoding.UTF8.GetString(hashedData, 0, hashedData.Length);
+
+            return outputString;
+        }
+
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
@@ -91,12 +115,11 @@ namespace CyberBezpieczenstwo.PopUpForms
 
         private void Validator_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.mainForm.Enabled = true;
 
-        }
-
-        private void Validator_Load(object sender, EventArgs e)
-        {
+            if (preventParentClosing == false)
+            {
+                this.mainForm.Close();
+            }
 
         }
     }

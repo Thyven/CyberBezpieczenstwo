@@ -16,33 +16,84 @@ namespace CyberBezpieczenstwo
         private List<UserData> listOfUsers;
         public bool isAdmin = false;
 
+        public bool isRegexNeeded = true;
+
         public void Refresh()
         {
             labelUsername.Text = loggedUser.username;
 
             if (loggedUser.role == "admin")
             {
-                labeAdmin.Visible = true;
+                checkBoxRegex.Visible = true;
                 userListBox.Visible = true;
+                editButton.Visible = true;
+                deleteUserButton.Visible = true;
+                addUserButton.Visible = true;
+
+
+                userListBox.Items.Clear();
                 listOfUsers = data.GetUsers();
                 foreach (var user in listOfUsers)
                 {
                     userListBox.Items.Add(user);
                 }
             }
+            else
+            {
+                addNewUserButton.Visible = false;
+                editButton.Visible = false;
+                deleteUserButton.Visible = false;
+                addUserButton.Visible = false;
+            }
 
+            // Regex labels
+            if (isRegexNeeded)
+            {
+                labelRegex.Text = "Regex ON";
+                labelRegex.ForeColor = Color.DarkGreen;
+            }
+            else
+            {
+                labelRegex.Text = "Regex OFF";
+                labelRegex.ForeColor = Color.Crimson;
+            }
+
+
+            
         }
+        internal void CheckDateExpiration()
+        {
+            Task.Delay(2000);
+            // Check if password time is valid
+            for (int i = 0; i < data.items.Count; i++)
+            {
+                if (data.items[i].userID == loggedUser.userID)
+                {
+                    if (data.items[i].passwordExpireDate < DateTime.Today)
+                    {
+                        DialogResult changePassword = MessageBox.Show("Password Expired, need a new one", "Password Expired", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-
+                        if (changePassword == DialogResult.OK)
+                        {
+                            ChangePassword valdiator = new ChangePassword(this);
+                            valdiator.Show();
+                            this.Enabled = false;
+                        }
+                    }
+                }
+            }
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Validator valdiator = new Validator(this);
             valdiator.Show();
             this.Enabled = false;
+            addNewUserButton.Visible = false;
+            editButton.Visible = false;
+            deleteUserButton.Visible = false;
+            addUserButton.Visible = false;
 
-          //  data.LoadJson("data.json");
-          //  data.DebugData();
 
         }
 
@@ -116,9 +167,9 @@ namespace CyberBezpieczenstwo
                     return;
                 }
             }
-            if(selectedIndex == 1) //zmiana hasla
+            if (selectedIndex == 1) //zmiana hasla
             {
-                if (!data.ChangePassword(selectedUser.username, editTextBox.Text))
+                if (!data.ChangePassword(selectedUser.username, editTextBox.Text, isRegexNeeded))
                 {
                     logTextBox.Text = "Unable to change password";
                 }
@@ -165,7 +216,6 @@ namespace CyberBezpieczenstwo
         private void addUserButton_Click(object sender, EventArgs e)
         {
             addUserVisible();
-
         }
 
         private void logTextBox_TextChanged(object sender, EventArgs e)
@@ -177,14 +227,14 @@ namespace CyberBezpieczenstwo
         {
             var validate = new Validate();
             var newUsername = usernameTextbox.Text;
-            if(validate.ifUserExist(newUsername))
+            if (validate.ifUserExist(newUsername))
             {
                 logTextBox.Clear();
                 logTextBox.Text = "Username with that name already exist";
                 return;
             }
             var newPassword = passwordTextbox.Text;
-            if(!validate.checkRegex(newPassword))
+            if (!validate.checkRegex(newPassword, isRegexNeeded))
             {
                 logTextBox.Clear();
                 logTextBox.Text = "Incorrect password";
@@ -201,21 +251,33 @@ namespace CyberBezpieczenstwo
 
         private void deleteUserButton_Click(object sender, EventArgs e)
         {
-            var data = new DataHandler();
-            logTextBox.Clear();
-            UserData selectedUser = (UserData)userListBox.SelectedItem;
-            if (selectedUser.username == loggedUser.username)
+            // Confirm messagebox
+            DialogResult deleteResult = MessageBox.Show("Are you sure you want to delete this user?", "Delete user", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (deleteResult == DialogResult.Yes)
             {
+                var data = new DataHandler();
+                logTextBox.Clear();
+                UserData selectedUser = (UserData)userListBox.SelectedItem;
+                if (selectedUser.username == loggedUser.username)
+                {
+                    logTextBox.Text = "Unable to delete user";
+                    return;
+                }
+                if (data.DeleteUser(selectedUser.username))
+                {
+                    logTextBox.Text = "User has been deleted";
+                    RefreshUserList();
+                    return;
+                }
                 logTextBox.Text = "Unable to delete user";
-                return;
             }
-            if (data.DeleteUser(selectedUser.username))
-            {
-                logTextBox.Text = "User has been deleted";
-                RefreshUserList();
-                return;
-            }
-            logTextBox.Text = "Unable to delete user";
+        }
+
+        private void checkBoxRegex_CheckedChanged(object sender, EventArgs e)
+        {
+            isRegexNeeded = !isRegexNeeded;
+            Refresh();
         }
     }
 }

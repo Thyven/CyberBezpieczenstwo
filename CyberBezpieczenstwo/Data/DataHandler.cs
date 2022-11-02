@@ -35,12 +35,6 @@ namespace CyberBezpieczenstwo.Data
             File.WriteAllText(path, json);
         }
 
-        public void DebugData()
-        {
-            Debug.WriteLine(items[0].oldPasswords[0]);
-            Debug.WriteLine(items[1].oldPasswords[1]);
-        }
-
         public List<UserData> GetUsers()
         {
             LoadJson();
@@ -63,10 +57,10 @@ namespace CyberBezpieczenstwo.Data
             return true;
         }
 
-        public bool ChangePassword(string username, string newPassword)
+        public bool ChangePassword(string username, string newPassword, bool isRegexNeeded)
         {
             var validate = new Validate();
-            if (!validate.checkRegex(newPassword)) return false;
+            if (!validate.checkRegex(newPassword, isRegexNeeded)) return false;
             var user = GetUsers().Where(x => x.username == username).FirstOrDefault();
             if (user == null) return false;
             var userWithNewPassword = user;

@@ -6,7 +6,9 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,17 +24,28 @@ namespace CyberBezpieczenstwo.PopUpForms
         public ChangePassword(MainForm parent)
         {
             mainForm = parent as MainForm;
+
+            this.CenterToParent();
             InitializeComponent();
         }
 
         private void checkForm()
         {
             string oldPassword = textBoxOldPassword.Text;
-            string userPassord = textBoxNewPassword.Text;
 
+            string userPassord = textBoxNewPassword.Text;
             string userPassordRe = textBoxNewPasswordRepeat.Text;
+
+            // Hash it here
+            oldPassword = HashString(oldPassword);
+            userPassord = HashString(userPassord);
+            userPassordRe = HashString(userPassordRe);
+
             bool oldPassOK = false;
             bool newPassMatch = false;
+
+            // Check for global regex and valdiate it
+            bool RegexOK = false;
 
             for (int i = 0; i < data.items.Count; i++)
             {
@@ -40,74 +53,92 @@ namespace CyberBezpieczenstwo.PopUpForms
 
                 if (data.items[i].userID == this.mainForm.loggedUser.userID)
                 {
-                Debug.WriteLine("2");
                     if (data.items[i].password != oldPassword)
                     {
-                        Debug.WriteLine("3");
-
-                        // Inna labelke trzeba dodac 
+                        labelNotMatching.Text = "Wrong password";
                         labelNotMatching.Visible = true;
                         Task.Delay(2000).ContinueWith(t => ResetLabelError());
                     }
                     else
                     {
-                        Debug.WriteLine("old pass match");
                         oldPassOK = true;
                     }
                 }
             }
 
-
             // if new password dont match
             if (userPassord == userPassordRe && (userPassord != ""))
             {
-                Debug.WriteLine("2 match");
-
                 if (userPassord != oldPassword)
                 {
-                    for (int i = 0; i < data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Count; i++)
+                    if (data.items[this.mainForm.loggedUser.userID - 1].oldPasswords != null)
                     {
-                        if (data.items[this.mainForm.loggedUser.userID - 1].oldPasswords[i] == userPassord)
+                        for (int i = 0; i < data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Count; i++)
                         {
-                            newPassMatch = false;
-                            Debug.WriteLine("TODO labelka ze takie haslo juz bylo");
-                            break;
-
+                            if (data.items[this.mainForm.loggedUser.userID - 1].oldPasswords[i] == userPassord)
+                            {
+                                newPassMatch = false;
+                                break;
+                            }
+                            else
+                            {
+                                newPassMatch = true;
+                            }
                         }
-                        else
-                        {
-                            Debug.WriteLine("No match in list");
-                            newPassMatch = true;
-                        }
+                    }
+                    else
+                    {
+                        // No previous pasword so pass
+                        newPassMatch = true;
                     }
                 }
                 else
                 {
-                    labelNotMatching.Text = "new passowrd must be other than old one";
+                    labelNotMatching.Text = "new password must be other than old one";
                     labelNotMatching.Visible = true;
                     Task.Delay(2000).ContinueWith(t => ResetLabelError());
 
                 }
-
-
             }
             else
             {
+                labelNotMatching.Text = "New passwords dont match";
                 labelNotMatching.Visible = true;
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
             }
 
 
-            if (newPassMatch && oldPassOK)
+            // check regex
+            RegexOK = CheckRegex(userPassord);
+
+            if (mainForm.isRegexNeeded == false)
+            {
+                RegexOK = true;
+            }
+
+            if (RegexOK == false)
+            {
+                labelNotMatching.Text = "Wrong Regex";
+                labelNotMatching.Visible = true;
+                Task.Delay(2000).ContinueWith(t => ResetLabelError());
+            }
+
+
+
+            if (newPassMatch && oldPassOK && RegexOK)
             {
                 // Actions
                 this.mainForm.Refresh();
-                Debug.WriteLine("feuer frei");
 
                 // Change password json logic
                 data.items[this.mainForm.loggedUser.userID - 1].password = userPassord;
                 data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Add(oldPassword);
 
+                // Date expiration reneval
+                var NowPlusMonths = DateTime.Now;
+                NowPlusMonths = NowPlusMonths.AddMonths(6);
+                NowPlusMonths = NowPlusMonths.Date;
+                data.items[this.mainForm.loggedUser.userID - 1].passwordExpireDate = NowPlusMonths;
                 data.SaveJson();
 
                 // Closing
@@ -115,6 +146,7 @@ namespace CyberBezpieczenstwo.PopUpForms
                 this.Close();
             }
         }
+
 
         private void ResetLabelError()
         {
@@ -128,6 +160,28 @@ namespace CyberBezpieczenstwo.PopUpForms
             catch (Exception)
             {
             }
+        }
+
+        public bool CheckRegex(string password)
+        {
+            string regexPattern = @"(?=.*[a-z])(?=.*\W)";
+            Regex regexSN = new Regex(regexPattern, RegexOptions.IgnoreCase);
+            var RegexOK = regexSN.IsMatch(password);
+            return RegexOK;
+        }
+
+
+        // Hashaszowanie
+
+        private string HashString(string input)
+        {
+            string outputString;
+
+            byte[] buffer = Encoding.UTF8.GetBytes(input);
+            byte[] hashedData = SHA256.HashData(buffer);
+            outputString = Encoding.UTF8.GetString(hashedData, 0, hashedData.Length);
+
+            return outputString;
         }
 
         private void buttonSubmitPassword_Click(object sender, EventArgs e)

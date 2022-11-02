@@ -27,11 +27,17 @@ namespace CyberBezpieczenstwo.Data
             return true;
         }
 
-        public bool checkRegex(string password)
+        public bool checkRegex(string password, bool isRegexNeeded)
         {
             string regexPattern = @"(?=.*[a-z])(?=.*\W)";
             Regex regexSN = new Regex(regexPattern, RegexOptions.IgnoreCase);
             var RegexOK = regexSN.IsMatch(password);
+
+            if (isRegexNeeded == false)
+            {
+                RegexOK = true;
+            }
+
             return RegexOK;
         }
     }
