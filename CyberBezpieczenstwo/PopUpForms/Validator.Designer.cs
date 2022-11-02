@@ -46,6 +46,7 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(100, 23);
             this.textBoxUsername.TabIndex = 0;
+            this.textBoxUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxUsername_KeyDown);
             // 
             // textBoxPassword
             // 
@@ -54,6 +55,7 @@
             this.textBoxPassword.Size = new System.Drawing.Size(100, 23);
             this.textBoxPassword.TabIndex = 1;
             this.textBoxPassword.UseSystemPasswordChar = true;
+            this.textBoxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPassword_KeyDown);
             // 
             // buttonSubmit
             // 
@@ -124,6 +126,7 @@
             this.Text = "Validator";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Validator_FormClosing);
+            this.Shown += new System.EventHandler(this.Validator_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

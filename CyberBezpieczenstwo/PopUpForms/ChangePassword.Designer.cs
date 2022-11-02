@@ -72,6 +72,7 @@
             this.textBoxOldPassword.Name = "textBoxOldPassword";
             this.textBoxOldPassword.Size = new System.Drawing.Size(167, 23);
             this.textBoxOldPassword.TabIndex = 3;
+            this.textBoxOldPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxOldPassword_KeyDown);
             // 
             // textBoxNewPassword
             // 
@@ -79,6 +80,7 @@
             this.textBoxNewPassword.Name = "textBoxNewPassword";
             this.textBoxNewPassword.Size = new System.Drawing.Size(167, 23);
             this.textBoxNewPassword.TabIndex = 4;
+            this.textBoxNewPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNewPassword_KeyDown);
             // 
             // textBoxNewPasswordRepeat
             // 
@@ -86,6 +88,7 @@
             this.textBoxNewPasswordRepeat.Name = "textBoxNewPasswordRepeat";
             this.textBoxNewPasswordRepeat.Size = new System.Drawing.Size(167, 23);
             this.textBoxNewPasswordRepeat.TabIndex = 5;
+            this.textBoxNewPasswordRepeat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNewPasswordRepeat_KeyDown);
             // 
             // labelNotMatching
             // 
@@ -125,6 +128,7 @@
             this.Text = "ChangePassword";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangePassword_FormClosing);
+            this.Shown += new System.EventHandler(this.ChangePassword_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

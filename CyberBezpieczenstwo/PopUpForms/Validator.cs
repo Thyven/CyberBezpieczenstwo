@@ -122,6 +122,30 @@ namespace CyberBezpieczenstwo.PopUpForms
             }
 
         }
+
+
+        // Go to next texbox
+        private void Validator_Shown(object sender, EventArgs e)
+        {
+            textBoxUsername.Focus();
+        }
+        private void textBoxUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBoxPassword.Focus();
+            }
+        }
+
+        // press button
+        private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                checkForm();
+            }
+        }
+
     }
 }
 

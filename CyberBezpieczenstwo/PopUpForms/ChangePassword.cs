@@ -192,5 +192,34 @@ namespace CyberBezpieczenstwo.PopUpForms
         {
             this.mainForm.Enabled = true;
         }
+
+        private void ChangePassword_Shown(object sender, EventArgs e)
+        {
+            textBoxOldPassword.Focus();
+        }
+
+        private void textBoxOldPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBoxNewPassword.Focus();
+            }
+        }
+
+        private void textBoxNewPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBoxNewPasswordRepeat.Focus();
+            }
+        }
+
+        private void textBoxNewPasswordRepeat_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                checkForm();
+            }
+        }
     }
 }
