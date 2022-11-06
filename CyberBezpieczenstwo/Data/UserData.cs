@@ -11,7 +11,7 @@ namespace CyberBezpieczenstwo.Data
         public int userID;
         public string username;
         public string password;
-        public string passwordExpireDate;
+        public DateTime passwordExpireDate;
         public string role;
         public List<string> oldPasswords;
 

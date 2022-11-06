@@ -1,1 +1,26 @@
-[{"userID":1,"username":"A","password":"b!","passwordExpireDate":"09/12/2023","role":"admin","oldPasswords":null},{"userID":3,"username":"DD","password":"s!","passwordExpireDate":null,"role":"user","oldPasswords":null}]
+[
+  {
+    "userID": 1,
+    "username": "a",
+    "password": "$.�8b�<[���!5��$��z��vR�1]�1",
+    "passwordExpireDate": "06/06/2023",
+    "role": "admin",
+    "oldPasswords": [ "" ]
+  },
+  {
+    "userID": 2,
+    "username": "u1",
+    "password": "u!",
+    "passwordExpireDate": "06/06/2022",
+    "role": "user",
+    "oldPasswords": [""]
+  },
+  {
+    "userID": 3,
+    "username": "u2",
+    "password": "u!",
+    "passwordExpireDate": "06/06/2022",
+    "role": "user",
+    "oldPasswords": [""]
+  }
+]

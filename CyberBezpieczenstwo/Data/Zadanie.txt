@@ -1,25 +1,31 @@
 ﻿
+Legenda:
+"+" -> OK
+"?" -> nie jestem pewien czy jest OK
+"!" -> Trzeba jeszcze zrobic 
+
 
 admin:
- zmienia swoje hasło (po poprawnym poprzednim)
- modyfikowac dane userow (username i password)
- dodawac nowych userow
- przegladac userow 
- blokowac konta userow i blowkac ogranicznie hasel (wyłanczamy reguły i mozna dac np. haslo admin1 ?)
- usuwac konta userow
- (globalnie) właczyc/wyłączyc regexa do haseł
- waznosc hasla (po uplyiwe czasu user pdoaje nowe hasło inne niz poprzednie)
- exit programu
+ +zmienia swoje hasło (po poprawnym poprzednim)
+ +modyfikowac dane userow (username i password)
+ +dodawac nowych userow
+ +przegladac userow 
+ +usuwac konta userow
+ +exit programu
+ +(globalnie) właczyc/wyłączyc regexa do haseł
+ +waznosc hasla (po uplyiwe czasu user pdoaje nowe hasło inne niz poprzednie)
+ 
+ ? blokowac konta userow i blokowac ogranicznie hasel (wyłanczamy reguły i mozna dac np. haslo admin1 ?)
 
 user:
- zmiana hasło (jezeli stare porpawne)
- exit programu
+ +zmiana hasło (jezeli stare porpawne)
+ +exit programu
+
+!hasła hashować
+
 
 uruchomienie:
- logowanie -> username/password(password jako ***) -> (nieporawny login) label invalid user/pass -> (ok) -> przy pierwszym logowaniu z password1 musimy zmienic hasło na własne
-
-hasła hashować
-
+logowanie -> username/password(password jako ***) -> (nieporawny login) label invalid user/pass -> (ok) -> przy pierwszym logowaniu z password1 musimy zmienic hasło na własne
 
 
 // regex: (?=.*[a-z])(?=.*\W)
