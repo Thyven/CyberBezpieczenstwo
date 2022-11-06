@@ -293,6 +293,7 @@ namespace CyberBezpieczenstwo
         private void logOutButton_Click(object sender, EventArgs e)
         {
             loggedUser = new UserData();
+            Logger.Write($" {loggedUser.userID}Logged Out");
             Validator valdiator = new Validator(this);
             valdiator.Show();
             this.Enabled = false;
@@ -302,6 +303,12 @@ namespace CyberBezpieczenstwo
             addUserButton.Visible = false;
             loggedUser.role = "cokolwiektylkonieadmin";
             Refresh();
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Logger.Write("test");
         }
     }
 }
