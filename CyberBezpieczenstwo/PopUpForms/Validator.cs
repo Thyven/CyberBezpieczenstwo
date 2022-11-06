@@ -55,12 +55,14 @@ namespace CyberBezpieczenstwo.PopUpForms
             {
                 labelValidaterRegex.Visible = true;
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
+                Logger.Write($"Incorrect user and/or password!"); // bład logowania
             }
 
             if (!canPass)
             {
                 labelValidateUsrPass.Visible = true;
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
+                Logger.Write($"Incorrect user and/or password!"); // bład logowania
             }
 
             if (RegexOK && canPass)
@@ -70,11 +72,16 @@ namespace CyberBezpieczenstwo.PopUpForms
                 this.mainForm.Refresh();
                 this.mainForm.CheckDateExpiration();
 
+                //Log
+                var currentUser = this.mainForm.loggedUser.username;
+                Logger.Write($"Signed In as {currentUser}");
+
                 // Closing
                 preventParentClosing = true;
                 this.mainForm.Enabled = true;
                 this.Close();
             }
+            
         }
 
         private void ResetLabelError()
@@ -111,6 +118,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             checkForm();
+           
         }
 
         private void Validator_FormClosing(object sender, FormClosingEventArgs e)
@@ -148,9 +156,3 @@ namespace CyberBezpieczenstwo.PopUpForms
 
     }
 }
-
-
-
-
-
-    
