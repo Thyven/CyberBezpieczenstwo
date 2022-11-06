@@ -44,6 +44,15 @@ namespace CyberBezpieczenstwo
                 editButton.Visible = false;
                 deleteUserButton.Visible = false;
                 addUserButton.Visible = false;
+                userListBox.Visible = false;
+                usernameLabel.Visible = false;
+                passwordLabel.Visible = false;
+                usernameTextbox.Visible = false;
+                passwordTextbox.Visible = false;
+                roleLabel.Visible = false;
+                adminRoleButton.Visible = false;
+                userRoleButton.Visible = false;
+                checkBoxRegex.Visible = false;  
             }
 
             // Regex labels
@@ -243,6 +252,7 @@ namespace CyberBezpieczenstwo
             string newRole = "user";
             if (adminRoleButton.Checked) newRole = "admin";
 
+            newPassword = validate.HashString(newPassword);
             var newUser = data.CreateUser(newUsername, newPassword, newRole);
             logTextBox.Clear();
             logTextBox.Text = $"New user {newUser.username} has been added";
@@ -277,6 +287,20 @@ namespace CyberBezpieczenstwo
         private void checkBoxRegex_CheckedChanged(object sender, EventArgs e)
         {
             isRegexNeeded = !isRegexNeeded;
+            Refresh();
+        }
+
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            loggedUser = new UserData();
+            Validator valdiator = new Validator(this);
+            valdiator.Show();
+            this.Enabled = false;
+            addNewUserButton.Visible = false;
+            editButton.Visible = false;
+            deleteUserButton.Visible = false;
+            addUserButton.Visible = false;
+            loggedUser.role = "cokolwiektylkonieadmin";
             Refresh();
         }
     }

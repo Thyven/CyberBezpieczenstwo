@@ -132,7 +132,8 @@ namespace CyberBezpieczenstwo.PopUpForms
 
                 // Change password json logic
                 data.items[this.mainForm.loggedUser.userID - 1].password = userPassord;
-                data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Add(oldPassword);
+                if(data.items[this.mainForm.loggedUser.userID - 1].oldPasswords != null)
+                    data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Add(oldPassword);
 
                 // Date expiration reneval
                 var NowPlusMonths = DateTime.Now;
