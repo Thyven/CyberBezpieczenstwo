@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-    //Microsoft.Practises.EnterpriseLibrary.Logging
+﻿//Microsoft.Practises.EnterpriseLibrary.Logging
 
 namespace CyberBezpieczenstwo.Data
 {
@@ -14,7 +8,7 @@ namespace CyberBezpieczenstwo.Data
         private static bool DEBUG = true;
 
         public static void Write(string msg)
-        {           
+        {
             _Path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             try
             {

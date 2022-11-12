@@ -1,1 +1,18 @@
-[{"userID":1,"username":"a","password":"$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1","passwordExpireDate":"2023-05-05T00:00:00+02:00","role":"admin","oldPasswords":["","$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1"]},{"userID":2,"username":"AdminMichal","password":"�\f\u001fu���`{�b\f�%��MG\u001c�\f�Y\u001f�\u0018��K��","passwordExpireDate":"2023-05-06T00:00:00+02:00","role":"admin","oldPasswords":null},{"userID":3,"username":"Uzyszkodnik","password":"Testower!","passwordExpireDate":"0001-01-01T00:00:00","role":"user","oldPasswords":null}]
+[
+  {
+    "userID": 1,
+    "username": "a",
+    "password": "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1",
+    "passwordExpireDate": "2023-05-05T00:00:00+02:00",
+    "role": "admin",
+    "oldPasswords": [ "", "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1" ]
+  },
+  {
+    "userID": 2,
+    "username": "AdminMichal",
+    "password": "�����(߄�i\u0006�X���\u0015��p\u001e�\u0013���mv?j",
+    "passwordExpireDate": "0001-01-01T00:00:00",
+    "role": "admin",
+    "oldPasswords": null
+  }
+]
