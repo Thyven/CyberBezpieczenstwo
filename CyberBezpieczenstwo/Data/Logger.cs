@@ -29,11 +29,8 @@ namespace CyberBezpieczenstwo.Data
         {
             try
             {
-                w.Write(Environment.NewLine);
                 w.Write("[{0} {1}]", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
-                w.Write("\t");
                 w.WriteLine(" {0}", msg);
-                w.WriteLine("-----------------------");
             }
             catch (Exception e)
             {

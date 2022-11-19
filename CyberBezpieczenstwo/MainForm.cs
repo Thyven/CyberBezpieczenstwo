@@ -1,13 +1,16 @@
 using CyberBezpieczenstwo.Data;
 using CyberBezpieczenstwo.PopUpForms;
+using System.Diagnostics;
 
 namespace CyberBezpieczenstwo
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
+            KeyPreview = true;
         }
 
         DataHandler data = new DataHandler();
@@ -99,7 +102,6 @@ namespace CyberBezpieczenstwo
             editButton.Visible = false;
             deleteUserButton.Visible = false;
             addUserButton.Visible = false;
-
         }
 
         private void buttonChangePassword_Click(object sender, EventArgs e)
@@ -131,7 +133,7 @@ namespace CyberBezpieczenstwo
             if (selectedIndex == 0)
             {
                 editLabel.Text = "Enter new username: ";
-                
+
             }
             else
             {
@@ -257,6 +259,7 @@ namespace CyberBezpieczenstwo
             logTextBox.Text = $"New user {newUser.username} has been added";
             Logger.Write($"{loggedUser.username} has added new user {newUser.username}");
             RefreshUserList();
+            
         }
 
         private void deleteUserButton_Click(object sender, EventArgs e)
@@ -293,6 +296,12 @@ namespace CyberBezpieczenstwo
 
         private void logOutButton_Click(object sender, EventArgs e)
         {
+            Logout();
+        }
+
+        private void Logout()
+        {
+            timer.Stop();
             loggedUser = new UserData();
             Logger.Write($" {loggedUser.userID}Logged Out");
             Validator valdiator = new Validator(this);
@@ -304,6 +313,39 @@ namespace CyberBezpieczenstwo
             addUserButton.Visible = false;
             loggedUser.role = "NiePowinienesTegoWidziec!";
             Refresh();
+        }
+
+
+        // timeout po 15 min (900s)
+        int timeooutTime = 20;
+        int tTime = 10;
+
+        private void OnUserActivity()
+        {
+            tTime = timeooutTime;
+        }
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            OnUserActivity();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            OnUserActivity();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (tTime >= 1)
+            {
+                tTime--;
+                labelTest.Text = tTime.ToString();
+            }
+            else
+            {
+                tTime = 10;
+                Logout();
+            }
         }
     }
 }
