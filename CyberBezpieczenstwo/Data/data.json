@@ -1,1 +1,18 @@
-[{"userID":1,"username":"a","password":"$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1","passwordExpireDate":"2023-05-05T00:00:00+02:00","role":"admin","oldPasswords":["","$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1"]},{"userID":2,"username":"u1","password":"�x\u0016��\u0001��AA@�]�\"#�\u0003a��\u0017z��\u0010�a�\u0000\u0015�","passwordExpireDate":"2022-06-06T00:00:00","role":"user","oldPasswords":[""]},{"userID":3,"username":"u2","password":".},\u0003�Pz�e���5h��3��\u0002�$\u0013��re��Z��","passwordExpireDate":"2022-06-06T00:00:00","role":"user","oldPasswords":[""]},{"userID":5,"username":"loser loser redit","password":"Dupa!1","passwordExpireDate":"0001-01-01T00:00:00","role":"user","oldPasswords":null},{"userID":6,"username":"dsadsa","password":"m\r\u0018^N���\u001c��q�s�J\u0005/�\"�aC���$�\u001c�ݪ","passwordExpireDate":"0001-01-01T00:00:00","role":"user","oldPasswords":null},{"userID":8,"username":"user","password":"�\u0002R\u0007a�\bma�\u0015>�r��\u0011%S��n\u0014�n�\nh���\u000e","passwordExpireDate":"2023-05-05T00:00:00+02:00","role":"user","oldPasswords":null},{"userID":9,"username":"user1","password":"X`��+k�\"+���#V\u000f\u000e6L͋g������\u001dI,�","passwordExpireDate":"2023-05-05T00:00:00+02:00","role":"user","oldPasswords":null},{"userID":10,"username":"admin","password":"\u001c2\u0011yU��#Y~��^7n��J�\u0011\u001a\u001a�!mƅ\u0003%�\u0010�","passwordExpireDate":"2023-05-05T00:00:00+02:00","role":"admin","oldPasswords":null},{"userID":11,"username":"asda","password":"L��-�<���-���\u0003�}��J�P\u00024�G\u001dj\b�ŕy","passwordExpireDate":"0001-01-01T00:00:00","role":"user","oldPasswords":null},{"userID":12,"username":"user11","password":"`y�wG�\u000bk�\u000f�è\u0017�gϥ�\u001cU8k�J\u0005�Y\u001ak�}","passwordExpireDate":"0001-01-01T00:00:00","role":"user","oldPasswords":null}]
+[
+  {
+    "userID": 1,
+    "username": "a",
+    "password": "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1",
+    "passwordExpireDate": "2023-05-05T00:00:00+02:00",
+    "role": "admin",
+    "oldPasswords": [ "", "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1" ]
+  },
+  {
+    "userID": 2,
+    "username": "AdminMichal",
+    "password": "�����(߄�i\u0006�X���\u0015��p\u001e�\u0013���mv?j",
+    "passwordExpireDate": "0001-01-01T00:00:00",
+    "role": "admin",
+    "oldPasswords": null
+  }
+]

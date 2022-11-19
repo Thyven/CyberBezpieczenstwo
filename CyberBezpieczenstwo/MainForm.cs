@@ -1,16 +1,13 @@
 using CyberBezpieczenstwo.Data;
 using CyberBezpieczenstwo.PopUpForms;
-using System.Diagnostics;
 
 namespace CyberBezpieczenstwo
 {
     public partial class MainForm : Form
     {
-
         public MainForm()
         {
             InitializeComponent();
-            KeyPreview = true;
         }
 
         DataHandler data = new DataHandler();
@@ -32,8 +29,6 @@ namespace CyberBezpieczenstwo
                 editButton.Visible = true;
                 deleteUserButton.Visible = true;
                 addUserButton.Visible = true;
-
-
                 userListBox.Items.Clear();
                 listOfUsers = data.GetUsers();
                 foreach (var user in listOfUsers)
@@ -55,7 +50,7 @@ namespace CyberBezpieczenstwo
                 roleLabel.Visible = false;
                 adminRoleButton.Visible = false;
                 userRoleButton.Visible = false;
-                checkBoxRegex.Visible = false;  
+                checkBoxRegex.Visible = false;
             }
 
             // Regex labels
@@ -70,8 +65,6 @@ namespace CyberBezpieczenstwo
                 labelRegex.ForeColor = Color.Crimson;
             }
 
-
-            
         }
         internal void CheckDateExpiration()
         {
@@ -90,6 +83,7 @@ namespace CyberBezpieczenstwo
                             ChangePassword valdiator = new ChangePassword(this);
                             valdiator.Show();
                             this.Enabled = false;
+                            Logger.Write($"Password change as {loggedUser.username}"); //log
                         }
                     }
                 }
@@ -105,6 +99,7 @@ namespace CyberBezpieczenstwo
             editButton.Visible = false;
             deleteUserButton.Visible = false;
             addUserButton.Visible = false;
+
         }
 
         private void buttonChangePassword_Click(object sender, EventArgs e)
@@ -112,7 +107,7 @@ namespace CyberBezpieczenstwo
             ChangePassword valdiator = new ChangePassword(this);
             valdiator.Show();
             this.Enabled = false;
-
+            Logger.Write($"{loggedUser.username} has changed own password");
         }
 
         private void userListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,6 +131,7 @@ namespace CyberBezpieczenstwo
             if (selectedIndex == 0)
             {
                 editLabel.Text = "Enter new username: ";
+                
             }
             else
             {
@@ -174,6 +170,7 @@ namespace CyberBezpieczenstwo
                 {
                     RefreshUserList();
                     logTextBox.Text = $"Username for user {selectedUsername} changed for {editTextBox.Text}";
+                    Logger.Write($"{loggedUser.username} has changed username of {selectedUsername} to {editTextBox.Text}");
                     return;
                 }
             }
@@ -185,7 +182,8 @@ namespace CyberBezpieczenstwo
                 }
                 else
                 {
-                    logTextBox.Text = $"Password for user {selectedUser.username} has been changed";
+                    logTextBox.Text = $"Password for user {selectedUser} has been changed";
+                    Logger.Write($"{loggedUser.username} has changed password of {selectedUser}");
                 }
             }
         }
@@ -257,6 +255,7 @@ namespace CyberBezpieczenstwo
             var newUser = data.CreateUser(newUsername, newPassword, newRole);
             logTextBox.Clear();
             logTextBox.Text = $"New user {newUser.username} has been added";
+            Logger.Write($"{loggedUser.username} has added new user {newUser.username}");
             RefreshUserList();
         }
 
@@ -270,6 +269,7 @@ namespace CyberBezpieczenstwo
                 var data = new DataHandler();
                 logTextBox.Clear();
                 UserData selectedUser = (UserData)userListBox.SelectedItem;
+                Logger.Write($"{loggedUser.username} Removed user {selectedUser}");
                 if (selectedUser.username == loggedUser.username)
                 {
                     logTextBox.Text = "Unable to delete user";
@@ -293,13 +293,8 @@ namespace CyberBezpieczenstwo
 
         private void logOutButton_Click(object sender, EventArgs e)
         {
-            Logout();
-        }
-
-        private void Logout()
-        {
-            timer.Stop();
             loggedUser = new UserData();
+            Logger.Write($" {loggedUser.userID}Logged Out");
             Validator valdiator = new Validator(this);
             valdiator.Show();
             this.Enabled = false;
@@ -307,41 +302,8 @@ namespace CyberBezpieczenstwo
             editButton.Visible = false;
             deleteUserButton.Visible = false;
             addUserButton.Visible = false;
-            loggedUser.role = "cokolwiektylkonieadmin";
+            loggedUser.role = "NiePowinienesTegoWidziec!";
             Refresh();
-        }
-
-
-        // timeout po 15 min (900s)
-        int timeooutTime = 20;
-        int tTime = 10;
-
-        private void OnUserActivity()
-        {
-           tTime = timeooutTime;
-        }
-        private void MainForm_MouseDown(object sender, MouseEventArgs e)
-        {
-            OnUserActivity();
-        }
-
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            OnUserActivity();
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            if (tTime >= 0)
-            {
-                tTime--;
-                labelTest.Text = tTime.ToString();
-            }
-            else
-            {
-                tTime = 10;
-                Logout();
-            }
         }
     }
 }
