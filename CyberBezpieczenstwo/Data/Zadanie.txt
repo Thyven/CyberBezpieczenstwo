@@ -1,9 +1,7 @@
-﻿
-Legenda:
+﻿Legenda:
 "+" -> OK
 "?" -> nie jestem pewien czy jest OK
 "!" -> Trzeba jeszcze zrobic 
-
 
 admin:
  +zmienia swoje hasło (po poprawnym poprzednim)
@@ -23,12 +21,7 @@ user:
 
 !hasła hashować
 
-
 uruchomienie:
 logowanie -> username/password(password jako ***) -> (nieporawny login) label invalid user/pass -> (ok) -> przy pierwszym logowaniu z password1 musimy zmienic hasło na własne
 
-
 // regex: (?=.*[a-z])(?=.*\W)
-
-
-

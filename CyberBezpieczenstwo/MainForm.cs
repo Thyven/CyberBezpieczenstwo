@@ -1,6 +1,5 @@
 using CyberBezpieczenstwo.Data;
 using CyberBezpieczenstwo.PopUpForms;
-using System.Diagnostics;
 
 namespace CyberBezpieczenstwo
 {
@@ -259,7 +258,7 @@ namespace CyberBezpieczenstwo
             logTextBox.Text = $"New user {newUser.username} has been added";
             Logger.Write($"{loggedUser.username} has added new user {newUser.username}");
             RefreshUserList();
-            
+
         }
 
         private void deleteUserButton_Click(object sender, EventArgs e)

@@ -1,6 +1,4 @@
-﻿//Microsoft.Practises.EnterpriseLibrary.Logging
-
-namespace CyberBezpieczenstwo.Data
+﻿namespace CyberBezpieczenstwo.Data
 {
     internal class Logger
     {
