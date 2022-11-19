@@ -22,6 +22,11 @@ namespace CyberBezpieczenstwo.PopUpForms
 
         bool preventParentClosing;
 
+
+        // timeout
+        int wrongTries = 0;
+        int howManyTries = 3;
+
         public Validator(MainForm parent)
         {
             mainForm = parent as MainForm;
@@ -49,8 +54,9 @@ namespace CyberBezpieczenstwo.PopUpForms
 
             // check regex
             var RegexOK = validate.checkRegex(userPassord, mainForm.isRegexNeeded);
+          
+           
 
-            
             if (!RegexOK)
             {
                 labelValidaterRegex.Visible = true;
@@ -69,11 +75,42 @@ namespace CyberBezpieczenstwo.PopUpForms
                 this.mainForm.loggedUser = data.GetUsers().Where(x => x.username == userName).First();
                 this.mainForm.Refresh();
                 this.mainForm.CheckDateExpiration();
+                this.mainForm.timer.Start();
 
                 // Closing
                 preventParentClosing = true;
                 this.mainForm.Enabled = true;
                 this.Close();
+            }
+            else
+            {
+                wrongTries++;
+                if (wrongTries >= howManyTries)
+                {
+                    this.Enabled = false;
+                    labelTimerLock.Visible = true;
+                    passwordTimeout.Start();
+
+                }
+            }
+        }
+
+
+        //  wrong login/password timeout for 15 min (900s)
+        static int timeoutTime = 10;
+        int tTime = timeoutTime;
+        private void passwordTimeout_Tick(object sender, EventArgs e)
+        {
+            tTime--;
+            labelTimerLock.Text = $"Lock for {tTime} s";
+
+            if (tTime <= 0)
+            {
+                wrongTries = 0;
+                this.Enabled = true;
+                labelTimerLock.Visible = false;
+                tTime = timeoutTime;
+                passwordTimeout.Stop();
             }
         }
 
@@ -115,12 +152,10 @@ namespace CyberBezpieczenstwo.PopUpForms
 
         private void Validator_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             if (preventParentClosing == false)
             {
                 this.mainForm.Close();
             }
-
         }
 
 
@@ -145,7 +180,6 @@ namespace CyberBezpieczenstwo.PopUpForms
                 checkForm();
             }
         }
-
     }
 }
 

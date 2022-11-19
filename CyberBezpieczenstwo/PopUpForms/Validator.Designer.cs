@@ -37,6 +37,8 @@
             this.labelValidaterRegex = new System.Windows.Forms.Label();
             this.labelValidateUsrPass = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.passwordTimeout = new System.Windows.Forms.Timer(this.components);
+            this.labelTimerLock = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,11 +111,27 @@
             this.labelValidateUsrPass.Text = "Wrong Username / Password";
             this.labelValidateUsrPass.Visible = false;
             // 
+            // passwordTimeout
+            // 
+            this.passwordTimeout.Interval = 1000;
+            this.passwordTimeout.Tick += new System.EventHandler(this.passwordTimeout_Tick);
+            // 
+            // labelTimerLock
+            // 
+            this.labelTimerLock.AutoSize = true;
+            this.labelTimerLock.Location = new System.Drawing.Point(14, 258);
+            this.labelTimerLock.Name = "labelTimerLock";
+            this.labelTimerLock.Size = new System.Drawing.Size(67, 15);
+            this.labelTimerLock.TabIndex = 7;
+            this.labelTimerLock.Text = "Lock for 0 s";
+            this.labelTimerLock.Visible = false;
+            // 
             // Validator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 244);
+            this.ClientSize = new System.Drawing.Size(300, 335);
+            this.Controls.Add(this.labelTimerLock);
             this.Controls.Add(this.labelValidateUsrPass);
             this.Controls.Add(this.labelValidaterRegex);
             this.Controls.Add(this.labelPassword);
@@ -143,5 +161,7 @@
         private Label labelValidaterRegex;
         private Label labelValidateUsrPass;
         private BindingSource bindingSource1;
+        public System.Windows.Forms.Timer passwordTimeout;
+        private Label labelTimerLock;
     }
 }
