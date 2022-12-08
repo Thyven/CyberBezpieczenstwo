@@ -101,6 +101,7 @@ namespace CyberBezpieczenstwo
             editButton.Visible = false;
             deleteUserButton.Visible = false;
             addUserButton.Visible = false;
+            setOneTimePasswordCheckbox.Visible = false;
         }
 
         private void buttonChangePassword_Click(object sender, EventArgs e)
@@ -132,11 +133,13 @@ namespace CyberBezpieczenstwo
             if (selectedIndex == 0)
             {
                 editLabel.Text = "Enter new username: ";
+                setOneTimePasswordButton.Visible = false;
 
             }
             else
             {
                 editLabel.Text = "Enter new password: ";
+                setOneTimePasswordButton.Visible = true;
             }
             editLabel.Visible = true;
             editTextBox.Visible = true;
@@ -150,6 +153,7 @@ namespace CyberBezpieczenstwo
 
         private void changeButton_Click(object sender, EventArgs e)
         {
+            var validate = new Validate();
             var data = new DataHandler();
             var selectedIndex = userEditBox.SelectedIndex;
             logTextBox.Clear();
@@ -177,7 +181,8 @@ namespace CyberBezpieczenstwo
             }
             if (selectedIndex == 1) //zmiana hasla
             {
-                if (!data.ChangePassword(selectedUser.username, editTextBox.Text, isRegexNeeded))
+                var newPassword = validate.HashString(editTextBox.Text);
+                if (!data.ChangePassword(selectedUser.username, newPassword, isRegexNeeded))
                 {
                     logTextBox.Text = "Unable to change password";
                 }
@@ -200,7 +205,7 @@ namespace CyberBezpieczenstwo
         }
         private void addUserVisible()
         {
-            userEditBox.Visible = editLabel.Visible = editTextBox.Visible = changeButton.Visible = false;
+            userEditBox.Visible = editLabel.Visible = editTextBox.Visible = changeButton.Visible = setOneTimePasswordButton.Visible = false;
             adminRoleButton.Visible =
                 addNewUserButton.Visible =
                 userRoleButton.Visible =
@@ -208,6 +213,7 @@ namespace CyberBezpieczenstwo
                 usernameLabel.Visible =
                 passwordLabel.Visible =
                 usernameTextbox.Visible =
+                setOneTimePasswordCheckbox.Visible =
                 passwordTextbox.Visible = true;
         }
         private void editUserVisible()
@@ -219,8 +225,9 @@ namespace CyberBezpieczenstwo
                     usernameLabel.Visible =
                     passwordLabel.Visible =
                     usernameTextbox.Visible =
+                    setOneTimePasswordCheckbox.Visible =
                     passwordTextbox.Visible = false;
-            userEditBox.Visible = true;
+            userEditBox.Visible = setOneTimePasswordButton.Visible = true;
         }
         private void addUserButton_Click(object sender, EventArgs e)
         {
@@ -345,6 +352,47 @@ namespace CyberBezpieczenstwo
                 tTime = 10;
                 Logout();
             }
+        }
+
+        private void setOneTimePasswordCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            var usernameLenght = 0;
+            var usersNumber = userListBox.Items.Count;
+            if(usernameTextbox.Text.Length > 1)
+            {
+                usernameLenght = usernameTextbox.Text.Length;
+            }
+            else
+            {
+                logTextBox.Clear();
+                logTextBox.Text = "First enter username";
+                setOneTimePasswordCheckbox.Checked = false;
+                return;
+
+            }
+            var generatePassword = new GeneratePassword();
+            if (setOneTimePasswordCheckbox.Checked)
+            {
+                passwordTextbox.Enabled = false;
+                passwordTextbox.Text = generatePassword.OneTimePassword(usernameLenght, usersNumber);
+            }
+            else
+            {
+                passwordTextbox.Enabled = true;
+                passwordTextbox.Text = "";
+            }
+
+        }
+
+        private void setOneTimePasswordButton_Click(object sender, EventArgs e)
+        {
+            UserData selectedUser = (UserData)userListBox.SelectedItem;
+            if (selectedUser == null) return;
+            int usernameLenght = selectedUser.username.Length;
+            var usersNumber = userListBox.Items.Count;
+            var generatePassword = new GeneratePassword();
+            var newPassword = generatePassword.OneTimePassword(usernameLenght, usersNumber);
+            if(userEditBox.SelectedIndex == 1) editTextBox.Text = newPassword;
         }
     }
 }

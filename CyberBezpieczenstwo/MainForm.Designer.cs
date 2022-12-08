@@ -54,14 +54,16 @@
             this.logOutButton = new System.Windows.Forms.Button();
             this.labelTest = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.setOneTimePasswordButton = new System.Windows.Forms.Button();
+            this.setOneTimePasswordCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 17);
+            this.label1.Location = new System.Drawing.Point(16, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 15);
+            this.label1.Size = new System.Drawing.Size(41, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "User:";
             // 
@@ -69,17 +71,18 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelUsername.Location = new System.Drawing.Point(53, 17);
+            this.labelUsername.Location = new System.Drawing.Point(61, 23);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(62, 15);
+            this.labelUsername.Size = new System.Drawing.Size(78, 20);
             this.labelUsername.TabIndex = 1;
             this.labelUsername.Text = "username";
             // 
             // buttonChangePassword
             // 
-            this.buttonChangePassword.Location = new System.Drawing.Point(153, 13);
+            this.buttonChangePassword.Location = new System.Drawing.Point(175, 17);
+            this.buttonChangePassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonChangePassword.Name = "buttonChangePassword";
-            this.buttonChangePassword.Size = new System.Drawing.Size(119, 23);
+            this.buttonChangePassword.Size = new System.Drawing.Size(136, 31);
             this.buttonChangePassword.TabIndex = 2;
             this.buttonChangePassword.Text = "Change Password";
             this.buttonChangePassword.UseVisualStyleBackColor = true;
@@ -90,20 +93,19 @@
             this.labelRegex.AutoSize = true;
             this.labelRegex.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelRegex.ForeColor = System.Drawing.Color.DarkGreen;
-            this.labelRegex.Location = new System.Drawing.Point(297, 13);
+            this.labelRegex.Location = new System.Drawing.Point(339, 17);
             this.labelRegex.Name = "labelRegex";
-            this.labelRegex.Size = new System.Drawing.Size(86, 21);
+            this.labelRegex.Size = new System.Drawing.Size(107, 28);
             this.labelRegex.TabIndex = 3;
             this.labelRegex.Text = "Regex ON";
             // 
             // userListBox
             // 
             this.userListBox.FormattingEnabled = true;
-            this.userListBox.ItemHeight = 15;
-            this.userListBox.Location = new System.Drawing.Point(474, 69);
-            this.userListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.userListBox.ItemHeight = 20;
+            this.userListBox.Location = new System.Drawing.Point(542, 92);
             this.userListBox.Name = "userListBox";
-            this.userListBox.Size = new System.Drawing.Size(299, 124);
+            this.userListBox.Size = new System.Drawing.Size(341, 164);
             this.userListBox.TabIndex = 4;
             this.userListBox.Visible = false;
             this.userListBox.SelectedIndexChanged += new System.EventHandler(this.userListBox_SelectedIndexChanged);
@@ -111,10 +113,9 @@
             // editButton
             // 
             this.editButton.Enabled = false;
-            this.editButton.Location = new System.Drawing.Point(474, 196);
-            this.editButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.editButton.Location = new System.Drawing.Point(542, 261);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(134, 22);
+            this.editButton.Size = new System.Drawing.Size(153, 29);
             this.editButton.TabIndex = 7;
             this.editButton.Text = "Edit selected user";
             this.editButton.UseVisualStyleBackColor = true;
@@ -123,11 +124,10 @@
             // userEditBox
             // 
             this.userEditBox.FormattingEnabled = true;
-            this.userEditBox.ItemHeight = 15;
-            this.userEditBox.Location = new System.Drawing.Point(476, 226);
-            this.userEditBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.userEditBox.ItemHeight = 20;
+            this.userEditBox.Location = new System.Drawing.Point(544, 301);
             this.userEditBox.Name = "userEditBox";
-            this.userEditBox.Size = new System.Drawing.Size(297, 34);
+            this.userEditBox.Size = new System.Drawing.Size(339, 44);
             this.userEditBox.TabIndex = 8;
             this.userEditBox.Visible = false;
             this.userEditBox.SelectedIndexChanged += new System.EventHandler(this.userEditBox_SelectedIndexChanged);
@@ -135,19 +135,18 @@
             // editLabel
             // 
             this.editLabel.AutoSize = true;
-            this.editLabel.Location = new System.Drawing.Point(475, 265);
+            this.editLabel.Location = new System.Drawing.Point(543, 353);
             this.editLabel.Name = "editLabel";
-            this.editLabel.Size = new System.Drawing.Size(38, 15);
+            this.editLabel.Size = new System.Drawing.Size(50, 20);
             this.editLabel.TabIndex = 9;
             this.editLabel.Text = "label2";
             this.editLabel.Visible = false;
             // 
             // editTextBox
             // 
-            this.editTextBox.Location = new System.Drawing.Point(474, 282);
-            this.editTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.editTextBox.Location = new System.Drawing.Point(542, 376);
             this.editTextBox.Name = "editTextBox";
-            this.editTextBox.Size = new System.Drawing.Size(215, 23);
+            this.editTextBox.Size = new System.Drawing.Size(245, 27);
             this.editTextBox.TabIndex = 10;
             this.editTextBox.Visible = false;
             this.editTextBox.TextChanged += new System.EventHandler(this.editTextBox_TextChanged);
@@ -155,10 +154,9 @@
             // changeButton
             // 
             this.changeButton.Enabled = false;
-            this.changeButton.Location = new System.Drawing.Point(694, 280);
-            this.changeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.changeButton.Location = new System.Drawing.Point(793, 373);
             this.changeButton.Name = "changeButton";
-            this.changeButton.Size = new System.Drawing.Size(82, 22);
+            this.changeButton.Size = new System.Drawing.Size(94, 29);
             this.changeButton.TabIndex = 11;
             this.changeButton.Text = "Change";
             this.changeButton.UseVisualStyleBackColor = true;
@@ -167,10 +165,9 @@
             // 
             // addUserButton
             // 
-            this.addUserButton.Location = new System.Drawing.Point(613, 196);
-            this.addUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addUserButton.Location = new System.Drawing.Point(701, 261);
             this.addUserButton.Name = "addUserButton";
-            this.addUserButton.Size = new System.Drawing.Size(82, 22);
+            this.addUserButton.Size = new System.Drawing.Size(94, 29);
             this.addUserButton.TabIndex = 12;
             this.addUserButton.Text = "Add user";
             this.addUserButton.UseVisualStyleBackColor = true;
@@ -178,38 +175,35 @@
             // 
             // logTextBox
             // 
-            this.logTextBox.Location = new System.Drawing.Point(14, 346);
-            this.logTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.logTextBox.Location = new System.Drawing.Point(16, 461);
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ReadOnly = true;
-            this.logTextBox.Size = new System.Drawing.Size(776, 23);
+            this.logTextBox.Size = new System.Drawing.Size(886, 27);
             this.logTextBox.TabIndex = 13;
             this.logTextBox.TextChanged += new System.EventHandler(this.logTextBox_TextChanged);
             // 
             // usernameTextbox
             // 
-            this.usernameTextbox.Location = new System.Drawing.Point(550, 224);
-            this.usernameTextbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.usernameTextbox.Location = new System.Drawing.Point(629, 299);
             this.usernameTextbox.Name = "usernameTextbox";
-            this.usernameTextbox.Size = new System.Drawing.Size(110, 23);
+            this.usernameTextbox.Size = new System.Drawing.Size(125, 27);
             this.usernameTextbox.TabIndex = 14;
             this.usernameTextbox.Visible = false;
             // 
             // passwordTextbox
             // 
-            this.passwordTextbox.Location = new System.Drawing.Point(550, 248);
-            this.passwordTextbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.passwordTextbox.Location = new System.Drawing.Point(629, 331);
             this.passwordTextbox.Name = "passwordTextbox";
-            this.passwordTextbox.Size = new System.Drawing.Size(110, 23);
+            this.passwordTextbox.Size = new System.Drawing.Size(125, 27);
             this.passwordTextbox.TabIndex = 15;
             this.passwordTextbox.Visible = false;
             // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(481, 226);
+            this.usernameLabel.Location = new System.Drawing.Point(550, 301);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(63, 15);
+            this.usernameLabel.Size = new System.Drawing.Size(78, 20);
             this.usernameLabel.TabIndex = 16;
             this.usernameLabel.Text = "Username:";
             this.usernameLabel.Visible = false;
@@ -217,19 +211,18 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(481, 250);
+            this.passwordLabel.Location = new System.Drawing.Point(550, 333);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(60, 15);
+            this.passwordLabel.Size = new System.Drawing.Size(73, 20);
             this.passwordLabel.TabIndex = 17;
             this.passwordLabel.Text = "Password:";
             this.passwordLabel.Visible = false;
             // 
             // addNewUserButton
             // 
-            this.addNewUserButton.Location = new System.Drawing.Point(668, 237);
-            this.addNewUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addNewUserButton.Location = new System.Drawing.Point(763, 316);
             this.addNewUserButton.Name = "addNewUserButton";
-            this.addNewUserButton.Size = new System.Drawing.Size(82, 22);
+            this.addNewUserButton.Size = new System.Drawing.Size(94, 29);
             this.addNewUserButton.TabIndex = 18;
             this.addNewUserButton.Text = "Add";
             this.addNewUserButton.UseVisualStyleBackColor = true;
@@ -238,10 +231,9 @@
             // adminRoleButton
             // 
             this.adminRoleButton.AutoSize = true;
-            this.adminRoleButton.Location = new System.Drawing.Point(550, 273);
-            this.adminRoleButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.adminRoleButton.Location = new System.Drawing.Point(629, 364);
             this.adminRoleButton.Name = "adminRoleButton";
-            this.adminRoleButton.Size = new System.Drawing.Size(61, 19);
+            this.adminRoleButton.Size = new System.Drawing.Size(74, 24);
             this.adminRoleButton.TabIndex = 20;
             this.adminRoleButton.TabStop = true;
             this.adminRoleButton.Text = "Admin";
@@ -251,10 +243,9 @@
             // userRoleButton
             // 
             this.userRoleButton.AutoSize = true;
-            this.userRoleButton.Location = new System.Drawing.Point(550, 292);
-            this.userRoleButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.userRoleButton.Location = new System.Drawing.Point(629, 389);
             this.userRoleButton.Name = "userRoleButton";
-            this.userRoleButton.Size = new System.Drawing.Size(48, 19);
+            this.userRoleButton.Size = new System.Drawing.Size(59, 24);
             this.userRoleButton.TabIndex = 21;
             this.userRoleButton.TabStop = true;
             this.userRoleButton.Text = "User";
@@ -264,19 +255,18 @@
             // roleLabel
             // 
             this.roleLabel.AutoSize = true;
-            this.roleLabel.Location = new System.Drawing.Point(508, 284);
+            this.roleLabel.Location = new System.Drawing.Point(581, 379);
             this.roleLabel.Name = "roleLabel";
-            this.roleLabel.Size = new System.Drawing.Size(33, 15);
+            this.roleLabel.Size = new System.Drawing.Size(42, 20);
             this.roleLabel.TabIndex = 22;
             this.roleLabel.Text = "Role:";
             this.roleLabel.Visible = false;
             // 
             // deleteUserButton
             // 
-            this.deleteUserButton.Location = new System.Drawing.Point(701, 196);
-            this.deleteUserButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.deleteUserButton.Location = new System.Drawing.Point(801, 261);
             this.deleteUserButton.Name = "deleteUserButton";
-            this.deleteUserButton.Size = new System.Drawing.Size(82, 22);
+            this.deleteUserButton.Size = new System.Drawing.Size(94, 29);
             this.deleteUserButton.TabIndex = 23;
             this.deleteUserButton.Text = "Delete user";
             this.deleteUserButton.UseVisualStyleBackColor = true;
@@ -285,9 +275,10 @@
             // checkBoxRegex
             // 
             this.checkBoxRegex.AutoSize = true;
-            this.checkBoxRegex.Location = new System.Drawing.Point(297, 52);
+            this.checkBoxRegex.Location = new System.Drawing.Point(339, 69);
+            this.checkBoxRegex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxRegex.Name = "checkBoxRegex";
-            this.checkBoxRegex.Size = new System.Drawing.Size(99, 19);
+            this.checkBoxRegex.Size = new System.Drawing.Size(126, 24);
             this.checkBoxRegex.TabIndex = 24;
             this.checkBoxRegex.Text = "Disable Regex";
             this.checkBoxRegex.UseVisualStyleBackColor = true;
@@ -296,10 +287,9 @@
             // 
             // logOutButton
             // 
-            this.logOutButton.Location = new System.Drawing.Point(153, 43);
-            this.logOutButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.logOutButton.Location = new System.Drawing.Point(175, 57);
             this.logOutButton.Name = "logOutButton";
-            this.logOutButton.Size = new System.Drawing.Size(119, 27);
+            this.logOutButton.Size = new System.Drawing.Size(136, 36);
             this.logOutButton.TabIndex = 25;
             this.logOutButton.Text = "Re-log";
             this.logOutButton.UseVisualStyleBackColor = true;
@@ -308,9 +298,9 @@
             // labelTest
             // 
             this.labelTest.AutoSize = true;
-            this.labelTest.Location = new System.Drawing.Point(53, 285);
+            this.labelTest.Location = new System.Drawing.Point(61, 380);
             this.labelTest.Name = "labelTest";
-            this.labelTest.Size = new System.Drawing.Size(27, 15);
+            this.labelTest.Size = new System.Drawing.Size(35, 20);
             this.labelTest.TabIndex = 26;
             this.labelTest.Text = "Test";
             // 
@@ -319,11 +309,36 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // setOneTimePasswordButton
+            // 
+            this.setOneTimePasswordButton.Location = new System.Drawing.Point(361, 316);
+            this.setOneTimePasswordButton.Name = "setOneTimePasswordButton";
+            this.setOneTimePasswordButton.Size = new System.Drawing.Size(177, 29);
+            this.setOneTimePasswordButton.TabIndex = 27;
+            this.setOneTimePasswordButton.Text = "Set One-Time Password";
+            this.setOneTimePasswordButton.UseVisualStyleBackColor = true;
+            this.setOneTimePasswordButton.Visible = false;
+            this.setOneTimePasswordButton.Click += new System.EventHandler(this.setOneTimePasswordButton_Click);
+            // 
+            // setOneTimePasswordCheckbox
+            // 
+            this.setOneTimePasswordCheckbox.AutoSize = true;
+            this.setOneTimePasswordCheckbox.Location = new System.Drawing.Point(365, 356);
+            this.setOneTimePasswordCheckbox.Name = "setOneTimePasswordCheckbox";
+            this.setOneTimePasswordCheckbox.Size = new System.Drawing.Size(187, 24);
+            this.setOneTimePasswordCheckbox.TabIndex = 28;
+            this.setOneTimePasswordCheckbox.Text = "Set One-Time Password";
+            this.setOneTimePasswordCheckbox.UseVisualStyleBackColor = true;
+            this.setOneTimePasswordCheckbox.Visible = false;
+            this.setOneTimePasswordCheckbox.CheckedChanged += new System.EventHandler(this.setOneTimePasswordCheckbox_CheckedChanged);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.setOneTimePasswordCheckbox);
+            this.Controls.Add(this.setOneTimePasswordButton);
             this.Controls.Add(this.labelTest);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.checkBoxRegex);
@@ -348,6 +363,7 @@
             this.Controls.Add(this.buttonChangePassword);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -385,5 +401,7 @@
         private Button logOutButton;
         private Label labelTest;
         public System.Windows.Forms.Timer timer;
+        private Button setOneTimePasswordButton;
+        private CheckBox setOneTimePasswordCheckbox;
     }
 }
