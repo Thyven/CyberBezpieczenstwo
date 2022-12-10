@@ -12,8 +12,8 @@ namespace CyberBezpieczenstwo.Data
     {
         public string OneTimePassword(int a, int x)
         {
-            decimal newPassword = Decimal.Multiply(a, x);
-            // newPassword = Math.Round(newPassword, 7);
+            decimal newPassword = Decimal.Divide(a, x);
+            newPassword = Math.Round(newPassword, 7);
             return newPassword.ToString();
         }
     }
