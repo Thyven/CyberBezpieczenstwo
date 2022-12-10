@@ -14,6 +14,8 @@ namespace CyberBezpieczenstwo.Data
         public DateTime passwordExpireDate;
         public string role;
         public List<string> oldPasswords;
+        public string OneTimePassYN;
+        public string OneTimePassRes;
 
         public override string ToString()
         {

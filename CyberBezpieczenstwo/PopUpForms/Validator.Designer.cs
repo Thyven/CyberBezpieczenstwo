@@ -41,6 +41,7 @@
             this.labelTimerLock = new System.Windows.Forms.Label();
             this.labelOnetimePass = new System.Windows.Forms.Label();
             this.textBoxOneTimePass = new System.Windows.Forms.TextBox();
+            this.labelOneTimePassX = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,11 +147,22 @@
             this.textBoxOneTimePass.TabIndex = 9;
             this.textBoxOneTimePass.Visible = false;
             // 
+            // labelOneTimePassX
+            // 
+            this.labelOneTimePassX.AutoSize = true;
+            this.labelOneTimePassX.Location = new System.Drawing.Point(254, 122);
+            this.labelOneTimePassX.Name = "labelOneTimePassX";
+            this.labelOneTimePassX.Size = new System.Drawing.Size(27, 15);
+            this.labelOneTimePassX.TabIndex = 10;
+            this.labelOneTimePassX.Text = "x = ";
+            this.labelOneTimePassX.Visible = false;
+            // 
             // Validator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 335);
+            this.Controls.Add(this.labelOneTimePassX);
             this.Controls.Add(this.textBoxOneTimePass);
             this.Controls.Add(this.labelOnetimePass);
             this.Controls.Add(this.labelTimerLock);
@@ -187,5 +199,6 @@
         private Label labelTimerLock;
         private Label labelOnetimePass;
         private TextBox textBoxOneTimePass;
+        private Label labelOneTimePassX;
     }
 }
