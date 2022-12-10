@@ -79,6 +79,11 @@ namespace CyberBezpieczenstwo.Data
             newUser.username = username;
             newUser.password = password;
             newUser.role = role;
+            newUser.oldPasswords = new List<string> { "." };
+            var NowPlusMonths = DateTime.Now;
+            NowPlusMonths = NowPlusMonths.AddMonths(6);
+            NowPlusMonths = NowPlusMonths.Date;
+            newUser.passwordExpireDate = NowPlusMonths;
             items.Add(newUser);
             SaveJson();
             return newUser;
