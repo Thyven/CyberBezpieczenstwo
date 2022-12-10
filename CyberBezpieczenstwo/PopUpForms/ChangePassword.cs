@@ -123,8 +123,6 @@ namespace CyberBezpieczenstwo.PopUpForms
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
             }
 
-
-
             if (newPassMatch && oldPassOK && RegexOK)
             {
                 // Actions

@@ -39,6 +39,8 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.passwordTimeout = new System.Windows.Forms.Timer(this.components);
             this.labelTimerLock = new System.Windows.Forms.Label();
+            this.labelOnetimePass = new System.Windows.Forms.Label();
+            this.textBoxOneTimePass = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(77, 117);
+            this.buttonSubmit.Location = new System.Drawing.Point(77, 147);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(75, 23);
             this.buttonSubmit.TabIndex = 2;
@@ -90,11 +92,11 @@
             // labelValidaterRegex
             // 
             this.labelValidaterRegex.AutoSize = true;
-            this.labelValidaterRegex.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelValidaterRegex.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelValidaterRegex.ForeColor = System.Drawing.Color.Maroon;
-            this.labelValidaterRegex.Location = new System.Drawing.Point(12, 155);
+            this.labelValidaterRegex.Location = new System.Drawing.Point(14, 173);
             this.labelValidaterRegex.Name = "labelValidaterRegex";
-            this.labelValidaterRegex.Size = new System.Drawing.Size(131, 25);
+            this.labelValidaterRegex.Size = new System.Drawing.Size(109, 21);
             this.labelValidaterRegex.TabIndex = 5;
             this.labelValidaterRegex.Text = "Wrong regex";
             this.labelValidaterRegex.Visible = false;
@@ -102,11 +104,11 @@
             // labelValidateUsrPass
             // 
             this.labelValidateUsrPass.AutoSize = true;
-            this.labelValidateUsrPass.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelValidateUsrPass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelValidateUsrPass.ForeColor = System.Drawing.Color.Maroon;
-            this.labelValidateUsrPass.Location = new System.Drawing.Point(12, 198);
+            this.labelValidateUsrPass.Location = new System.Drawing.Point(14, 208);
             this.labelValidateUsrPass.Name = "labelValidateUsrPass";
-            this.labelValidateUsrPass.Size = new System.Drawing.Size(272, 25);
+            this.labelValidateUsrPass.Size = new System.Drawing.Size(230, 21);
             this.labelValidateUsrPass.TabIndex = 6;
             this.labelValidateUsrPass.Text = "Wrong Username / Password";
             this.labelValidateUsrPass.Visible = false;
@@ -119,18 +121,38 @@
             // labelTimerLock
             // 
             this.labelTimerLock.AutoSize = true;
-            this.labelTimerLock.Location = new System.Drawing.Point(14, 258);
+            this.labelTimerLock.Location = new System.Drawing.Point(77, 279);
             this.labelTimerLock.Name = "labelTimerLock";
             this.labelTimerLock.Size = new System.Drawing.Size(67, 15);
             this.labelTimerLock.TabIndex = 7;
             this.labelTimerLock.Text = "Lock for 0 s";
             this.labelTimerLock.Visible = false;
             // 
+            // labelOnetimePass
+            // 
+            this.labelOnetimePass.AutoSize = true;
+            this.labelOnetimePass.Location = new System.Drawing.Point(242, 58);
+            this.labelOnetimePass.Name = "labelOnetimePass";
+            this.labelOnetimePass.Size = new System.Drawing.Size(109, 15);
+            this.labelOnetimePass.TabIndex = 8;
+            this.labelOnetimePass.Text = "One time password";
+            this.labelOnetimePass.Visible = false;
+            // 
+            // textBoxOneTimePass
+            // 
+            this.textBoxOneTimePass.Location = new System.Drawing.Point(251, 79);
+            this.textBoxOneTimePass.Name = "textBoxOneTimePass";
+            this.textBoxOneTimePass.Size = new System.Drawing.Size(100, 23);
+            this.textBoxOneTimePass.TabIndex = 9;
+            this.textBoxOneTimePass.Visible = false;
+            // 
             // Validator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 335);
+            this.ClientSize = new System.Drawing.Size(372, 335);
+            this.Controls.Add(this.textBoxOneTimePass);
+            this.Controls.Add(this.labelOnetimePass);
             this.Controls.Add(this.labelTimerLock);
             this.Controls.Add(this.labelValidateUsrPass);
             this.Controls.Add(this.labelValidaterRegex);
@@ -163,5 +185,7 @@
         private BindingSource bindingSource1;
         public System.Windows.Forms.Timer passwordTimeout;
         private Label labelTimerLock;
+        private Label labelOnetimePass;
+        private TextBox textBoxOneTimePass;
     }
 }
