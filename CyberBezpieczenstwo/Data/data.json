@@ -5,7 +5,9 @@
     "password": "Tester#",
     "passwordExpireDate": "0001-01-01T00:00:00",
     "role": "admin",
-    "oldPasswords": [ "" ]
+    "oldPasswords": [ "." ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
   },
   {
     "userID": 3,
@@ -13,7 +15,9 @@
     "password": "NoweHaslo@",
     "passwordExpireDate": "0001-01-01T00:00:00",
     "role": "user",
-    "oldPasswords": [ "" ]
+    "oldPasswords": [ "" ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
   },
   {
     "userID": 5,
@@ -21,7 +25,9 @@
     "password": "��\u001e�u����-���d�)��/m���-��u��T",
     "passwordExpireDate": "0001-01-01T00:00:00",
     "role": "user",
-    "oldPasswords": [ "" ]
+    "oldPasswords": [ "" ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
   },
   {
     "userID": 1,
@@ -29,7 +35,9 @@
     "password": "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1",
     "passwordExpireDate": "2023-05-05T00:00:00+02:00",
     "role": "admin",
-    "oldPasswords": [ "", "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1" ]
+    "oldPasswords": [ "", "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1" ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
   },
   {
     "userID": 6,
@@ -37,7 +45,9 @@
     "password": "2,4",
     "passwordExpireDate": "0001-01-01T00:00:00",
     "role": "user",
-    "oldPasswords": [ "" ]
+    "oldPasswords": [ "" ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
   },
   {
     "userID": 7,
@@ -45,7 +55,9 @@
     "password": "�s^:&^\u0016��?Yq��]\u0003\u0001�\u0007ض�\u001f��:fn�\u0013�5",
     "passwordExpireDate": "0001-01-01T00:00:00",
     "role": "user",
-    "oldPasswords": [ "" ]
+    "oldPasswords": [ "" ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
   },
   {
     "userID": 8,
@@ -53,7 +65,9 @@
     "password": "HK#�٤�)RHI�Ǐ:�:s�s�I��#n\u0002�a�;",
     "passwordExpireDate": "2023-06-10T00:00:00+02:00",
     "role": "user",
-    "oldPasswords": [ "." ]
+    "oldPasswords": [ "." ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
   },
   {
     "userID": 9,
@@ -61,6 +75,28 @@
     "password": " �4��{�g��\u0003�\"�7���j�M;�$��xS��\u0014",
     "passwordExpireDate": "2023-06-10T00:00:00+02:00",
     "role": "user",
-    "oldPasswords": [ "." ]
+    "oldPasswords": [ "." ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": ""
+  },
+  {
+    "userID": 10,
+    "username": "cw",
+    "password": "�ٿ�\t��(\u001f�mQ�w\\��V���,z�\r:ڝр;J",
+    "passwordExpireDate": "2023-06-10T00:00:00+02:00",
+    "role": "user",
+    "oldPasswords": [ "." ],
+    "OneTimePassYN": "N",
+    "OneTimePassRes": "10"
+  },
+  {
+    "userID": 11,
+    "username": "cwwwfd",
+    "password": "���\u0002i\u0017\u000b��Q�\u000bT���I�WK8\u0010�l*0�-K��!",
+    "passwordExpireDate": "2023-06-10T00:00:00+02:00",
+    "role": "user",
+    "oldPasswords": [ "." ],
+    "OneTimePassYN": "Y",
+    "OneTimePassRes": "0,1714286"
   }
 ]

@@ -1,5 +1,6 @@
 using CyberBezpieczenstwo.Data;
 using CyberBezpieczenstwo.PopUpForms;
+using System.Diagnostics;
 
 namespace CyberBezpieczenstwo
 {
@@ -19,6 +20,7 @@ namespace CyberBezpieczenstwo
         public bool isAdmin = false;
 
         public bool isRegexNeeded = true;
+        public int oneTimePasswordValueX;
 
         public void Refresh()
         {
@@ -358,7 +360,7 @@ namespace CyberBezpieczenstwo
         {
             var usernameLenght = 0;
             var usersNumber = userListBox.Items.Count;
-            if(usernameTextbox.Text.Length > 1)
+            if (usernameTextbox.Text.Length > 1)
             {
                 usernameLenght = usernameTextbox.Text.Length;
             }
@@ -389,10 +391,18 @@ namespace CyberBezpieczenstwo
             UserData selectedUser = (UserData)userListBox.SelectedItem;
             if (selectedUser == null) return;
             int usernameLenght = selectedUser.username.Length;
-            var usersNumber = userListBox.Items.Count;
+            Random r = new Random();
+            int usersNumber = r.Next(15, 100);
+
             var generatePassword = new GeneratePassword();
             var newPassword = generatePassword.OneTimePassword(usernameLenght, usersNumber);
-            if(userEditBox.SelectedIndex == 1) editTextBox.Text = newPassword;
+            if (userEditBox.SelectedIndex == 1)
+            {
+                var dataHander = new DataHandler();
+                string username = selectedUser.username;
+                dataHander.UpdateUserOneTimePass(username, "Y", newPassword);
+                oneTimePasswordValueX = usersNumber;
+            }
         }
     }
 }
