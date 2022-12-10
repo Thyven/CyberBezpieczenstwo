@@ -323,8 +323,8 @@ namespace CyberBezpieczenstwo
 
 
         // timeout po 15 min (900s)
-        int timeooutTime = 20;
-        int tTime = 10;
+        int timeooutTime = 200;
+        int tTime = 200;
 
         private void OnUserActivity()
         {
