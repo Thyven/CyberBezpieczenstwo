@@ -20,7 +20,6 @@ namespace CyberBezpieczenstwo
         public bool isAdmin = false;
 
         public bool isRegexNeeded = true;
-        public int oneTimePasswordValueX;
 
         public void Refresh()
         {
@@ -391,6 +390,8 @@ namespace CyberBezpieczenstwo
             UserData selectedUser = (UserData)userListBox.SelectedItem;
             if (selectedUser == null) return;
             int usernameLenght = selectedUser.username.Length;
+
+            // Each time we set OTP global number "x" (from a/x) will change, this "x will display on"
             Random r = new Random();
             int usersNumber = r.Next(15, 100);
 
@@ -401,7 +402,6 @@ namespace CyberBezpieczenstwo
                 var dataHander = new DataHandler();
                 string username = selectedUser.username;
                 dataHander.UpdateUserOneTimePass(username, "Y", newPassword);
-                oneTimePasswordValueX = usersNumber;
             }
         }
     }

@@ -38,6 +38,22 @@ namespace CyberBezpieczenstwo.Data
             return RegexOK;
         }
 
+        // OTP
+
+        public bool checkOTP(string password, bool isRegexNeeded)
+        {
+            string regexPattern = @"(?=.*[a-z])(?=.*\W)";
+            Regex regexSN = new Regex(regexPattern, RegexOptions.IgnoreCase);
+            var RegexOK = regexSN.IsMatch(password);
+
+            if (isRegexNeeded == false)
+            {
+                RegexOK = true;
+            }
+
+            return RegexOK;
+        }
+
         public string HashString(string input)
         {
             string outputString;

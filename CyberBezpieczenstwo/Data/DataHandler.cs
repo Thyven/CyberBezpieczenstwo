@@ -71,27 +71,7 @@ namespace CyberBezpieczenstwo.Data
             return true;
         }
 
-        public UserData CreateUser(string username, string password, string role)
-        {
-            var highestId = items.OrderByDescending(x => x.userID).First().userID;
-            var newUser = new UserData();
-            newUser.userID = highestId + 1;
-            newUser.username = username;
-            newUser.password = password;
-            newUser.role = role;
-            newUser.oldPasswords = new List<string> { "." };
-            var NowPlusMonths = DateTime.Now;
-            NowPlusMonths = NowPlusMonths.AddMonths(6);
-            NowPlusMonths = NowPlusMonths.Date;
-            newUser.passwordExpireDate = NowPlusMonths;
-            newUser.OneTimePassYN = "N";
-            newUser.OneTimePassRes = "10";
-
-            items.Add(newUser);
-            SaveJson();
-            return newUser;
-        }
-
+        // Temp OTP refresh, next bind it with checkbox, if unchecked switch back OneTimePassYN = "N" 
         public void UpdateUserOneTimePass(string username, string OneTimePassYN, string OneTimePassRes)
         {
 
@@ -105,6 +85,29 @@ namespace CyberBezpieczenstwo.Data
                 items.Add(userOTP);
                 SaveJson();
             }
+        }
+
+        public UserData CreateUser(string username, string password, string role)
+        {
+            var highestId = items.OrderByDescending(x => x.userID).First().userID;
+            var newUser = new UserData();
+            newUser.userID = highestId + 1;
+            newUser.username = username;
+            newUser.password = password;
+            newUser.role = role;
+            newUser.oldPasswords = new List<string> { "." };
+            var NowPlusMonths = DateTime.Now;
+            NowPlusMonths = NowPlusMonths.AddMonths(6);
+            NowPlusMonths = NowPlusMonths.Date;
+            newUser.passwordExpireDate = NowPlusMonths;
+
+            // Extra data for OneTimePassword
+            newUser.OneTimePassYN = "N";
+            newUser.OneTimePassRes = "10";
+
+            items.Add(newUser);
+            SaveJson();
+            return newUser;
         }
 
         public bool DeleteUser(string username)

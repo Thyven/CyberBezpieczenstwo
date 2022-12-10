@@ -31,6 +31,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         {
             mainForm = parent as MainForm;
             data = new DataHandler();
+            labelOTPvalX = data.
 
             this.CenterToParent();
             InitializeComponent();
@@ -54,8 +55,9 @@ namespace CyberBezpieczenstwo.PopUpForms
 
             // check regex
             var RegexOK = validate.checkRegex(userPassord, mainForm.isRegexNeeded);
-          
-           
+
+            // One Time Password 
+            
 
             if (!RegexOK)
             {
