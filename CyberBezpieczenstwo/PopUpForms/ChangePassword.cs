@@ -131,6 +131,8 @@ namespace CyberBezpieczenstwo.PopUpForms
                 this.mainForm.Refresh();
 
                 // Change password json logic
+                var loggedUsername = this.mainForm.loggedUser.username;
+                data.ChangePassword(loggedUsername, userPassord, false);
                 data.items[this.mainForm.loggedUser.userID - 1].password = userPassord;
                 if(data.items[this.mainForm.loggedUser.userID - 1].oldPasswords != null)
                     data.items[this.mainForm.loggedUser.userID - 1].oldPasswords.Add(oldPassword);
