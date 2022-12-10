@@ -76,21 +76,23 @@ namespace CyberBezpieczenstwo.PopUpForms
                 this.mainForm.Refresh();
                 this.mainForm.CheckDateExpiration();
                 this.mainForm.timer.Start();
+                Logger.Write($"{mainForm.loggedUser.username} logged in");
 
                 // Closing
                 preventParentClosing = true;
                 this.mainForm.Enabled = true;
                 this.Close();
+
             }
             else
             {
                 wrongTries++;
+                Logger.Write($"Someone tried to log in with incorrect login or password");
                 if (wrongTries >= howManyTries)
                 {
                     this.Enabled = false;
                     labelTimerLock.Visible = true;
                     passwordTimeout.Start();
-
                 }
             }
         }
@@ -148,6 +150,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             checkForm();
+
         }
 
         private void Validator_FormClosing(object sender, FormClosingEventArgs e)
