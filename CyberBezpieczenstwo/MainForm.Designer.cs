@@ -55,7 +55,6 @@
             this.labelTest = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.setOneTimePasswordButton = new System.Windows.Forms.Button();
-            this.setOneTimePasswordCheckbox = new System.Windows.Forms.CheckBox();
             this.LogButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -340,19 +339,6 @@
             this.setOneTimePasswordButton.Visible = false;
             this.setOneTimePasswordButton.Click += new System.EventHandler(this.setOneTimePasswordButton_Click);
             // 
-            // setOneTimePasswordCheckbox
-            // 
-            this.setOneTimePasswordCheckbox.AutoSize = true;
-            this.setOneTimePasswordCheckbox.Location = new System.Drawing.Point(319, 267);
-            this.setOneTimePasswordCheckbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.setOneTimePasswordCheckbox.Name = "setOneTimePasswordCheckbox";
-            this.setOneTimePasswordCheckbox.Size = new System.Drawing.Size(151, 19);
-            this.setOneTimePasswordCheckbox.TabIndex = 28;
-            this.setOneTimePasswordCheckbox.Text = "Set One-Time Password";
-            this.setOneTimePasswordCheckbox.UseVisualStyleBackColor = true;
-            this.setOneTimePasswordCheckbox.Visible = false;
-            this.setOneTimePasswordCheckbox.CheckedChanged += new System.EventHandler(this.setOneTimePasswordCheckbox_CheckedChanged);
-            // 
             // LogButton
             // 
             this.LogButton.Location = new System.Drawing.Point(18, 405);
@@ -370,7 +356,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.LogButton);
-            this.Controls.Add(this.setOneTimePasswordCheckbox);
             this.Controls.Add(this.setOneTimePasswordButton);
             this.Controls.Add(this.labelTest);
             this.Controls.Add(this.logOutButton);
@@ -434,7 +419,6 @@
         private Label labelTest;
         public System.Windows.Forms.Timer timer;
         private Button setOneTimePasswordButton;
-        private CheckBox setOneTimePasswordCheckbox;
         private Button LogButton;
     }
 }

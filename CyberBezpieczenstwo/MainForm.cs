@@ -41,7 +41,22 @@ namespace CyberBezpieczenstwo
                     userListBox.Items.Add(user);
                 }
             }
-            else
+            else if (loggedUser.role == "mod")
+            {
+                checkBoxRegex.Visible = false;
+                userListBox.Visible = true;
+                editButton.Visible = true;
+                deleteUserButton.Visible = false;
+                addUserButton.Visible = false;
+                LogButton.Visible = true;
+                userListBox.Items.Clear();
+                listOfUsers = data.GetUsers();
+                foreach (var user in listOfUsers)
+                {
+                    userListBox.Items.Add(user);
+                }
+            } 
+            else //user
             {
                 addNewUserButton.Visible = false;
                 editButton.Visible = false;
@@ -106,7 +121,6 @@ namespace CyberBezpieczenstwo
             editButton.Visible = false;
             deleteUserButton.Visible = false;
             addUserButton.Visible = false;
-            setOneTimePasswordCheckbox.Visible = false;
         }
 
         private void buttonChangePassword_Click(object sender, EventArgs e)
@@ -148,7 +162,9 @@ namespace CyberBezpieczenstwo
             }
             editLabel.Visible = true;
             editTextBox.Visible = true;
+            setOneTimePasswordButton.Visible = true;
             changeButton.Visible = true;
+            setOneTimePasswordButton.Visible = true;
         }
 
         private void editTextBox_TextChanged(object sender, EventArgs e)
@@ -218,7 +234,6 @@ namespace CyberBezpieczenstwo
                 usernameLabel.Visible =
                 passwordLabel.Visible =
                 usernameTextbox.Visible =
-                setOneTimePasswordCheckbox.Visible =
                 passwordTextbox.Visible = true;
         }
         private void editUserVisible()
@@ -230,9 +245,8 @@ namespace CyberBezpieczenstwo
                     usernameLabel.Visible =
                     passwordLabel.Visible =
                     usernameTextbox.Visible =
-                    setOneTimePasswordCheckbox.Visible =
                     passwordTextbox.Visible = false;
-            userEditBox.Visible = setOneTimePasswordButton.Visible = true;
+            userEditBox.Visible = true;
         }
         private void addUserButton_Click(object sender, EventArgs e)
         {
@@ -371,25 +385,16 @@ namespace CyberBezpieczenstwo
             {
                 logTextBox.Clear();
                 logTextBox.Text = "First enter username";
-                setOneTimePasswordCheckbox.Checked = false;
                 return;
 
             }
             var generatePassword = new GeneratePassword();
-            if (setOneTimePasswordCheckbox.Checked)
-            {
-                passwordTextbox.Enabled = false;
-            }
-            else
-            {
-                passwordTextbox.Enabled = true;
-                passwordTextbox.Text = "";
-            }
-
         }
 
         private void setOneTimePasswordButton_Click(object sender, EventArgs e)
         {
+
+
             UserData selectedUser = (UserData)userListBox.SelectedItem;
             if (selectedUser == null) return;
             int usernameLenght = selectedUser.username.Length;
@@ -402,6 +407,8 @@ namespace CyberBezpieczenstwo
                 string username = selectedUser.username;
                 dataHander.UpdateUserOneTimePass(username, "Y", newPassword);
             }
+
+            MessageBox.Show("OTP has been created!", "OTP information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void LogButton_Click(object sender, EventArgs e)
