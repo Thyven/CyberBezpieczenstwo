@@ -89,7 +89,7 @@ namespace CyberBezpieczenstwo.PopUpForms
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
             }
 
-            if (RegexOK && canPass)
+            if (RegexOK && canPass && OTPisOK)
             {
                 // Actions
                 this.mainForm.loggedUser = data.GetUsers().Where(x => x.username == userName).First();
