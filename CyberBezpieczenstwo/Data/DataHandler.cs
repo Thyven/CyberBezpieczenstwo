@@ -85,14 +85,14 @@ namespace CyberBezpieczenstwo.Data
             NowPlusMonths = NowPlusMonths.Date;
             newUser.passwordExpireDate = NowPlusMonths;
             newUser.OneTimePassYN = "N";
-            newUser.OneTimePassRes = "10";
+            newUser.OneTimePassRes = 10;
 
             items.Add(newUser);
             SaveJson();
             return newUser;
         }
 
-        public void UpdateUserOneTimePass(string username, string OneTimePassYN, string OneTimePassRes)
+        public void UpdateUserOneTimePass(string username, string OneTimePassYN, double OneTimePassRes)
         {
 
             var user = GetUsers().Where(x => x.username == username).FirstOrDefault();

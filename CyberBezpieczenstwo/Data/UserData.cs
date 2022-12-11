@@ -15,7 +15,7 @@ namespace CyberBezpieczenstwo.Data
         public string role;
         public List<string> oldPasswords;
         public string OneTimePassYN;
-        public string OneTimePassRes;
+        public double? OneTimePassRes;
 
         public override string ToString()
         {

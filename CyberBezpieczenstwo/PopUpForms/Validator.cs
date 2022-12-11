@@ -31,6 +31,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         {
             mainForm = parent as MainForm;
             data = new DataHandler();
+            
 
             this.CenterToParent();
             InitializeComponent();
@@ -54,8 +55,19 @@ namespace CyberBezpieczenstwo.PopUpForms
 
             // check regex
             var RegexOK = validate.checkRegex(userPassord, mainForm.isRegexNeeded);
-          
-           
+
+            // check OTP;
+            double optValue = 0;
+            try
+            {
+              optValue = Convert.ToDouble(textBoxOneTimePass.Text);
+
+            }
+            catch (Exception)
+            {
+            }
+
+            bool OTPisOK = validate.checkOTP(userName, optValue);
 
             if (!RegexOK)
             {
@@ -66,6 +78,14 @@ namespace CyberBezpieczenstwo.PopUpForms
             if (!canPass)
             {
                 labelValidateUsrPass.Visible = true;
+                Task.Delay(2000).ContinueWith(t => ResetLabelError());
+            }
+
+            // OTP
+            if (!OTPisOK)
+            {
+                labelValidateUsrPass.Visible = true;
+                labelValidateUsrPass.Text = "Wrong One Time Password";
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
             }
 
@@ -162,6 +182,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         // Go to next texbox
         private void Validator_Shown(object sender, EventArgs e)
         {
+            labelOTPvalX.Text = $"X = {mainForm.oneTimePasswordValueX.ToString()}";
             textBoxUsername.Focus();
         }
         private void textBoxUsername_KeyDown(object sender, KeyEventArgs e)
