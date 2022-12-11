@@ -1,5 +1,6 @@
 using CyberBezpieczenstwo.Data;
 using CyberBezpieczenstwo.PopUpForms;
+using System.Diagnostics;
 
 namespace CyberBezpieczenstwo
 {
@@ -31,6 +32,7 @@ namespace CyberBezpieczenstwo
                 editButton.Visible = true;
                 deleteUserButton.Visible = true;
                 addUserButton.Visible = true;
+                LogButton.Visible = true;
                 userListBox.Items.Clear();
                 listOfUsers = data.GetUsers();
                 foreach (var user in listOfUsers)
@@ -53,6 +55,8 @@ namespace CyberBezpieczenstwo
                 adminRoleButton.Visible = false;
                 userRoleButton.Visible = false;
                 checkBoxRegex.Visible = false;
+                LogButton.Visible = false;
+                buttonChangePassword.Visible = true;
             }
 
             // Regex labels
@@ -393,6 +397,12 @@ namespace CyberBezpieczenstwo
             var generatePassword = new GeneratePassword();
             var newPassword = generatePassword.OneTimePassword(usernameLenght, usersNumber);
             if(userEditBox.SelectedIndex == 1) editTextBox.Text = newPassword;
+        }
+
+        private void LogButton_Click(object sender, EventArgs e)
+        {
+         
+            Process.Start("notepad.exe", Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+"\\Log.txt");
         }
     }
 }
