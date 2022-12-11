@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -36,6 +37,34 @@ namespace CyberBezpieczenstwo.Data
             }
 
             return RegexOK;
+        }
+
+        public bool checkOTP(string username, double otp)
+        {
+            DataHandler dataHandler = new DataHandler();
+            var user = dataHandler.GetUsers().Where(x => x.username == username).FirstOrDefault();
+            if (user == null) return false;
+            else
+            {
+                if (user.OneTimePassYN == "Y")
+                {
+                    if ( otp == user.OneTimePassRes)
+                    {
+
+                        Debug.WriteLine("!!! OK OTP !!!");
+                        Debug.WriteLine(otp);
+                        Debug.WriteLine(user.OneTimePassRes);
+
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("!!! wrong OTP !!!");
+                        return false;
+                    }
+                }
+                else return true;    
+            }
         }
 
         public string HashString(string input)

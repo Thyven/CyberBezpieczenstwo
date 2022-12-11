@@ -20,6 +20,7 @@ namespace CyberBezpieczenstwo
         public bool isAdmin = false;
 
         public bool isRegexNeeded = true;
+        public int oneTimePasswordValueX = 20;
 
         public void Refresh()
         {
@@ -360,9 +361,9 @@ namespace CyberBezpieczenstwo
 
         private void setOneTimePasswordCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            var usernameLenght = 0;
+            int usernameLenght = 0;
             var usersNumber = userListBox.Items.Count;
-            if(usernameTextbox.Text.Length > 1)
+            if (usernameTextbox.Text.Length > 1)
             {
                 usernameLenght = usernameTextbox.Text.Length;
             }
@@ -378,7 +379,6 @@ namespace CyberBezpieczenstwo
             if (setOneTimePasswordCheckbox.Checked)
             {
                 passwordTextbox.Enabled = false;
-                passwordTextbox.Text = generatePassword.OneTimePassword(usernameLenght, usersNumber);
             }
             else
             {
@@ -393,10 +393,15 @@ namespace CyberBezpieczenstwo
             UserData selectedUser = (UserData)userListBox.SelectedItem;
             if (selectedUser == null) return;
             int usernameLenght = selectedUser.username.Length;
-            var usersNumber = userListBox.Items.Count;
+
             var generatePassword = new GeneratePassword();
-            var newPassword = generatePassword.OneTimePassword(usernameLenght, usersNumber);
-            if(userEditBox.SelectedIndex == 1) editTextBox.Text = newPassword;
+            double newPassword = generatePassword.OneTimePassword(usernameLenght, oneTimePasswordValueX);
+            if (userEditBox.SelectedIndex == 1)
+            {
+                var dataHander = new DataHandler();
+                string username = selectedUser.username;
+                dataHander.UpdateUserOneTimePass(username, "Y", newPassword);
+            }
         }
 
         private void LogButton_Click(object sender, EventArgs e)

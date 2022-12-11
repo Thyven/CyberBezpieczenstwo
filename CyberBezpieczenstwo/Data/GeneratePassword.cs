@@ -10,11 +10,11 @@ namespace CyberBezpieczenstwo.Data
 {
     public class GeneratePassword
     {
-        public string OneTimePassword(int a, int x)
+        public double OneTimePassword(int a, int x)
         {
-            decimal newPassword = Decimal.Divide(a, x);
-            newPassword = Math.Round(newPassword, 7);
-            return newPassword.ToString();
+            Decimal newPassword = Decimal.Multiply(a, x);
+            // newPassword = Math.Round(newPassword, 7);
+            return (double)newPassword;
         }
     }
 }

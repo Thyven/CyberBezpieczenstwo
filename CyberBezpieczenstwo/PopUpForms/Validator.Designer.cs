@@ -41,6 +41,7 @@
             this.labelTimerLock = new System.Windows.Forms.Label();
             this.labelOnetimePass = new System.Windows.Forms.Label();
             this.textBoxOneTimePass = new System.Windows.Forms.TextBox();
+            this.labelOTPvalX = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,7 +137,6 @@
             this.labelOnetimePass.Size = new System.Drawing.Size(109, 15);
             this.labelOnetimePass.TabIndex = 8;
             this.labelOnetimePass.Text = "One time password";
-            this.labelOnetimePass.Visible = false;
             // 
             // textBoxOneTimePass
             // 
@@ -144,13 +144,22 @@
             this.textBoxOneTimePass.Name = "textBoxOneTimePass";
             this.textBoxOneTimePass.Size = new System.Drawing.Size(100, 23);
             this.textBoxOneTimePass.TabIndex = 9;
-            this.textBoxOneTimePass.Visible = false;
+            // 
+            // labelOTPvalX
+            // 
+            this.labelOTPvalX.AutoSize = true;
+            this.labelOTPvalX.Location = new System.Drawing.Point(251, 117);
+            this.labelOTPvalX.Name = "labelOTPvalX";
+            this.labelOTPvalX.Size = new System.Drawing.Size(27, 15);
+            this.labelOTPvalX.TabIndex = 11;
+            this.labelOTPvalX.Text = "x = ";
             // 
             // Validator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 335);
+            this.Controls.Add(this.labelOTPvalX);
             this.Controls.Add(this.textBoxOneTimePass);
             this.Controls.Add(this.labelOnetimePass);
             this.Controls.Add(this.labelTimerLock);
@@ -187,5 +196,6 @@
         private Label labelTimerLock;
         private Label labelOnetimePass;
         private TextBox textBoxOneTimePass;
+        private Label labelOTPvalX;
     }
 }
