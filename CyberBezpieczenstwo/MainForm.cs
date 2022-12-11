@@ -55,7 +55,7 @@ namespace CyberBezpieczenstwo
                 {
                     userListBox.Items.Add(user);
                 }
-            } 
+            }
             else //user
             {
                 addNewUserButton.Visible = false;
@@ -72,7 +72,13 @@ namespace CyberBezpieczenstwo
                 userRoleButton.Visible = false;
                 checkBoxRegex.Visible = false;
                 LogButton.Visible = false;
-                buttonChangePassword.Visible = true;
+                buttonChangePassword.Visible = false;
+                editTextBox.Visible = false;
+                setOneTimePasswordButton.Visible = false;
+                userEditBox.Visible = false;
+                passwordTextbox.Visible = false;
+                editLabel.Visible = false;
+                changeButton.Visible = false;
             }
 
             // Regex labels
@@ -398,6 +404,7 @@ namespace CyberBezpieczenstwo
             UserData selectedUser = (UserData)userListBox.SelectedItem;
             if (selectedUser == null) return;
             int usernameLenght = selectedUser.username.Length;
+            Logger.Write($"OneTimePassword created for {selectedUser}");
 
             var generatePassword = new GeneratePassword();
             double newPassword = generatePassword.OneTimePassword(usernameLenght, oneTimePasswordValueX);
@@ -413,8 +420,8 @@ namespace CyberBezpieczenstwo
 
         private void LogButton_Click(object sender, EventArgs e)
         {
-         
-            Process.Start("notepad.exe", Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+"\\Log.txt");
+
+            Process.Start("notepad.exe", Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Log.txt");
         }
     }
 }

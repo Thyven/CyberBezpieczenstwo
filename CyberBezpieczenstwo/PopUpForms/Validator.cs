@@ -86,6 +86,7 @@ namespace CyberBezpieczenstwo.PopUpForms
             {
                 labelValidateUsrPass.Visible = true;
                 labelValidateUsrPass.Text = "Wrong One Time Password";
+                Logger.Write($"Someone tried to log in with incorrect OneTimePassword!");
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
             }
 

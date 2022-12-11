@@ -48,7 +48,7 @@ namespace CyberBezpieczenstwo.Data
             {
                 if (user.OneTimePassYN == "Y")
                 {
-                    if ( otp == user.OneTimePassRes)
+                    if (otp == user.OneTimePassRes)
                     {
 
                         Debug.WriteLine("!!! OK OTP !!!");
@@ -63,7 +63,7 @@ namespace CyberBezpieczenstwo.Data
                         return false;
                     }
                 }
-                else return true;    
+                else return true;
             }
         }
 
