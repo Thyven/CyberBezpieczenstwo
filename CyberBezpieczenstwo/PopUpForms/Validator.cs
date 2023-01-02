@@ -1,4 +1,6 @@
 ﻿using CyberBezpieczenstwo.Data;
+using Microsoft.Web.WebView2.WinForms;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +8,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -16,6 +19,7 @@ namespace CyberBezpieczenstwo.PopUpForms
 {
     public partial class Validator : Form
     {
+
         // Reverse control main form
         private MainForm mainForm;
         DataHandler data;
@@ -31,7 +35,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         {
             mainForm = parent as MainForm;
             data = new DataHandler();
-            
+
 
             this.CenterToParent();
             InitializeComponent();
@@ -60,7 +64,7 @@ namespace CyberBezpieczenstwo.PopUpForms
             double optValue = 0;
             try
             {
-              optValue = Convert.ToDouble(textBoxOneTimePass.Text);
+                optValue = Convert.ToDouble(textBoxOneTimePass.Text);
 
             }
             catch (Exception)
@@ -205,9 +209,51 @@ namespace CyberBezpieczenstwo.PopUpForms
                 checkForm();
             }
         }
-    }
-}
 
+
+
+        // ReCaptcha
+
+        private void Validator_Load(object sender, EventArgs e)
+        {
+            wvRC.Source = new Uri("https://recaptcha.tiiny.site/");
+        }
+
+        private async void buttonReCapchta_Click(object sender, EventArgs e)
+        {
+
+            string script = "document.getElementsByClassName('g-recaptcha-response')[0].value";
+
+            string response = await wvRC.ExecuteScriptAsync(script);
+            string encodedResponse = response.Replace("\"", "");
+            string secretKey = "6LfSN8YjAAAAAMt5kyHcwU8nX5d6xsAAV3bLYq3e";
+
+            string url = $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={encodedResponse}";
+            
+            using (WebClient client = new WebClient())
+            {
+                string result = client.DownloadString(url);
+                Debug.WriteLine(url);
+
+                JObject json = JObject.Parse(result);
+                bool success = (bool)json["success"];
+                Debug.WriteLine(success);
+
+                if (success)
+                {
+                    this.BackColor = Color.Green;
+                }
+                else
+                {
+                    this.BackColor = Color.Red;
+                }
+            }
+        }
+
+       
+    }
+
+}
 
 
 

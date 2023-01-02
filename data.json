@@ -1,0 +1,26 @@
+[
+  {
+    "userID": 1,
+    "username": "a",
+    "password": "$.�8b�<[���!5��\u0007$\u0013��z��v\u0007R�\u001f1]�1",
+    "passwordExpireDate": "2023-06-06T00:00:00",
+    "role": "admin",
+    "oldPasswords": [ "" ]
+  },
+  {
+    "userID": 2,
+    "username": "u1",
+    "password": "�x\u0016��\u0001��AA@�]�\"#�\u0003a��\u0017z��\u0010�a�\u0000\u0015�",
+    "passwordExpireDate": "2022-06-06T00:00:00",
+    "role": "user",
+    "oldPasswords": [ "" ]
+  },
+  {
+    "userID": 3,
+    "username": "u2",
+    "password": ".},\u0003�Pz�e���5h��3��\u0002�$\u0013��re��Z��",
+    "passwordExpireDate": "2022-06-06T00:00:00",
+    "role": "user",
+    "oldPasswords": [ "" ]
+  }
+]

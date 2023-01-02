@@ -42,7 +42,10 @@
             this.labelOnetimePass = new System.Windows.Forms.Label();
             this.textBoxOneTimePass = new System.Windows.Forms.TextBox();
             this.labelOTPvalX = new System.Windows.Forms.Label();
+            this.wvRC = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.buttonReCapchta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wvRC)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxUsername
@@ -154,11 +157,34 @@
             this.labelOTPvalX.TabIndex = 11;
             this.labelOTPvalX.Text = "x = ";
             // 
+            // wvRC
+            // 
+            this.wvRC.AllowExternalDrop = true;
+            this.wvRC.CreationProperties = null;
+            this.wvRC.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.wvRC.Location = new System.Drawing.Point(397, 45);
+            this.wvRC.Name = "wvRC";
+            this.wvRC.Size = new System.Drawing.Size(424, 262);
+            this.wvRC.TabIndex = 12;
+            this.wvRC.ZoomFactor = 1D;
+            // 
+            // buttonReCapchta
+            // 
+            this.buttonReCapchta.Location = new System.Drawing.Point(540, 313);
+            this.buttonReCapchta.Name = "buttonReCapchta";
+            this.buttonReCapchta.Size = new System.Drawing.Size(173, 23);
+            this.buttonReCapchta.TabIndex = 13;
+            this.buttonReCapchta.Text = "ReCaptcha Check";
+            this.buttonReCapchta.UseVisualStyleBackColor = true;
+            this.buttonReCapchta.Click += new System.EventHandler(this.buttonReCapchta_Click);
+            // 
             // Validator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 335);
+            this.ClientSize = new System.Drawing.Size(845, 335);
+            this.Controls.Add(this.buttonReCapchta);
+            this.Controls.Add(this.wvRC);
             this.Controls.Add(this.labelOTPvalX);
             this.Controls.Add(this.textBoxOneTimePass);
             this.Controls.Add(this.labelOnetimePass);
@@ -175,8 +201,10 @@
             this.Text = "Validator";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Validator_FormClosing);
+            this.Load += new System.EventHandler(this.Validator_Load);
             this.Shown += new System.EventHandler(this.Validator_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.wvRC)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,5 +225,7 @@
         private Label labelOnetimePass;
         private TextBox textBoxOneTimePass;
         private Label labelOTPvalX;
+        private Button buttonReCapchta;
+        public Microsoft.Web.WebView2.WinForms.WebView2 wvRC;
     }
 }
