@@ -43,9 +43,17 @@
             this.textBoxOneTimePass = new System.Windows.Forms.TextBox();
             this.labelOTPvalX = new System.Windows.Forms.Label();
             this.wvRC = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.buttonReCapchta = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wvRC)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxUsername
@@ -162,29 +170,80 @@
             this.wvRC.AllowExternalDrop = true;
             this.wvRC.CreationProperties = null;
             this.wvRC.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.wvRC.Location = new System.Drawing.Point(397, 45);
+            this.wvRC.Location = new System.Drawing.Point(0, 0);
             this.wvRC.Name = "wvRC";
-            this.wvRC.Size = new System.Drawing.Size(424, 262);
+            this.wvRC.Size = new System.Drawing.Size(345, 263);
             this.wvRC.TabIndex = 12;
             this.wvRC.ZoomFactor = 1D;
             // 
-            // buttonReCapchta
+            // tabControl1
             // 
-            this.buttonReCapchta.Location = new System.Drawing.Point(540, 313);
-            this.buttonReCapchta.Name = "buttonReCapchta";
-            this.buttonReCapchta.Size = new System.Drawing.Size(173, 23);
-            this.buttonReCapchta.TabIndex = 13;
-            this.buttonReCapchta.Text = "ReCaptcha Check";
-            this.buttonReCapchta.UseVisualStyleBackColor = true;
-            this.buttonReCapchta.Click += new System.EventHandler(this.buttonReCapchta_Click);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(480, 32);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(353, 291);
+            this.tabControl1.TabIndex = 13;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.wvRC);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(345, 263);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "ReCaptcha";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(345, 263);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Captcha";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(383, 160);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(8, 8);
+            this.tabControl2.TabIndex = 14;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(0, 0);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(0, 0);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // Validator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 335);
-            this.Controls.Add(this.buttonReCapchta);
-            this.Controls.Add(this.wvRC);
+            this.Controls.Add(this.tabControl2);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.labelOTPvalX);
             this.Controls.Add(this.textBoxOneTimePass);
             this.Controls.Add(this.labelOnetimePass);
@@ -205,6 +264,9 @@
             this.Shown += new System.EventHandler(this.Validator_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wvRC)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,7 +287,12 @@
         private Label labelOnetimePass;
         private TextBox textBoxOneTimePass;
         private Label labelOTPvalX;
-        private Button buttonReCapchta;
         public Microsoft.Web.WebView2.WinForms.WebView2 wvRC;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabControl tabControl2;
+        private TabPage tabPage3;
+        private TabPage tabPage4;
     }
 }

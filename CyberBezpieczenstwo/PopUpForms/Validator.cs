@@ -31,6 +31,9 @@ namespace CyberBezpieczenstwo.PopUpForms
         int wrongTries = 0;
         int howManyTries = 3;
 
+
+        // Captcha
+        bool captcha;
         public Validator(MainForm parent)
         {
             mainForm = parent as MainForm;
@@ -85,16 +88,24 @@ namespace CyberBezpieczenstwo.PopUpForms
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
             }
 
-            // OTP
-            if (!OTPisOK)
+            //// OTP
+            //if (!OTPisOK)
+            //{
+            //    labelValidateUsrPass.Visible = true;
+            //    labelValidateUsrPass.Text = "Wrong One Time Password";
+            //    Logger.Write($"Someone tried to log in with incorrect OneTimePassword!");
+            //    Task.Delay(2000).ContinueWith(t => ResetLabelError());
+            //}
+
+            if (!captcha)
             {
                 labelValidateUsrPass.Visible = true;
-                labelValidateUsrPass.Text = "Wrong One Time Password";
-                Logger.Write($"Someone tried to log in with incorrect OneTimePassword!");
+                labelValidateUsrPass.Text = "Wrong Captcha";
+                Logger.Write($"Wrong Captcha!");
                 Task.Delay(2000).ContinueWith(t => ResetLabelError());
             }
 
-            if (RegexOK && canPass && OTPisOK)
+            if (RegexOK && canPass && captcha)
             {
                 // Actions
                 this.mainForm.loggedUser = data.GetUsers().Where(x => x.username == userName).First();
@@ -172,8 +183,35 @@ namespace CyberBezpieczenstwo.PopUpForms
         }
 
 
-        private void buttonSubmit_Click(object sender, EventArgs e)
+        private async void buttonSubmit_Click(object sender, EventArgs e)
         {
+            string script = "document.getElementsByClassName('g-recaptcha-response')[0].value";
+
+            string response = await wvRC.ExecuteScriptAsync(script);
+            string encodedResponse = response.Replace("\"", "");
+            string secretKey = "6LfSN8YjAAAAAMt5kyHcwU8nX5d6xsAAV3bLYq3e";
+
+            string url = $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={encodedResponse}";
+
+            using (WebClient client = new WebClient())
+            {
+                string result = client.DownloadString(url);
+                JObject json = JObject.Parse(result);
+                bool success = (bool)json["success"];
+                Debug.WriteLine(success);
+
+                if (success)
+                {
+                    captcha = true;
+                    Debug.WriteLine($"Captcha bool: {captcha}");
+                }
+                else
+                {
+                    captcha = false;
+                    Debug.WriteLine($"Captcha bool: {captcha}");
+                }
+            }
+
             checkForm();
 
         }
@@ -210,47 +248,11 @@ namespace CyberBezpieczenstwo.PopUpForms
             }
         }
 
-
-
         // ReCaptcha
-
         private void Validator_Load(object sender, EventArgs e)
         {
             wvRC.Source = new Uri("https://recaptcha.tiiny.site/");
         }
-
-        private async void buttonReCapchta_Click(object sender, EventArgs e)
-        {
-
-            string script = "document.getElementsByClassName('g-recaptcha-response')[0].value";
-
-            string response = await wvRC.ExecuteScriptAsync(script);
-            string encodedResponse = response.Replace("\"", "");
-            string secretKey = "6LfSN8YjAAAAAMt5kyHcwU8nX5d6xsAAV3bLYq3e";
-
-            string url = $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={encodedResponse}";
-            
-            using (WebClient client = new WebClient())
-            {
-                string result = client.DownloadString(url);
-                Debug.WriteLine(url);
-
-                JObject json = JObject.Parse(result);
-                bool success = (bool)json["success"];
-                Debug.WriteLine(success);
-
-                if (success)
-                {
-                    this.BackColor = Color.Green;
-                }
-                else
-                {
-                    this.BackColor = Color.Red;
-                }
-            }
-        }
-
-       
     }
 
 }
