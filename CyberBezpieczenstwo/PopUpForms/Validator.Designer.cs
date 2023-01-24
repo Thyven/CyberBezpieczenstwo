@@ -43,17 +43,19 @@
             this.textBoxOneTimePass = new System.Windows.Forms.TextBox();
             this.labelOTPvalX = new System.Windows.Forms.Label();
             this.wvRC = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.buttonIMGCaptcha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wvRC)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxUsername
@@ -176,37 +178,6 @@
             this.wvRC.TabIndex = 12;
             this.wvRC.ZoomFactor = 1D;
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(480, 32);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(353, 291);
-            this.tabControl1.TabIndex = 13;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.wvRC);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(345, 263);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "ReCaptcha";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(345, 263);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Captcha";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
@@ -237,6 +208,48 @@
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.buttonIMGCaptcha);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(343, 263);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Captcha";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.wvRC);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(343, 263);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "ReCaptcha";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(482, 32);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(351, 291);
+            this.tabControl1.TabIndex = 13;
+            // 
+            // buttonIMGCaptcha
+            // 
+            this.buttonIMGCaptcha.Location = new System.Drawing.Point(103, 111);
+            this.buttonIMGCaptcha.Name = "buttonIMGCaptcha";
+            this.buttonIMGCaptcha.Size = new System.Drawing.Size(132, 37);
+            this.buttonIMGCaptcha.TabIndex = 0;
+            this.buttonIMGCaptcha.Text = "Tiles Captcha";
+            this.buttonIMGCaptcha.UseVisualStyleBackColor = true;
+            this.buttonIMGCaptcha.Click += new System.EventHandler(this.buttonIMGCaptcha_Click);
+            // 
             // Validator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -264,9 +277,10 @@
             this.Shown += new System.EventHandler(this.Validator_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wvRC)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,11 +302,12 @@
         private TextBox textBoxOneTimePass;
         private Label labelOTPvalX;
         public Microsoft.Web.WebView2.WinForms.WebView2 wvRC;
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
         private TabControl tabControl2;
         private TabPage tabPage3;
         private TabPage tabPage4;
+        private TabPage tabPage2;
+        private Button buttonIMGCaptcha;
+        private TabPage tabPage1;
+        private TabControl tabControl1;
     }
 }

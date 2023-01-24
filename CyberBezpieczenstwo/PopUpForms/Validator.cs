@@ -33,7 +33,7 @@ namespace CyberBezpieczenstwo.PopUpForms
 
 
         // Captcha
-        bool captcha;
+        public bool captcha;
         public Validator(MainForm parent)
         {
             mainForm = parent as MainForm;
@@ -185,30 +185,33 @@ namespace CyberBezpieczenstwo.PopUpForms
 
         private async void buttonSubmit_Click(object sender, EventArgs e)
         {
-            string script = "document.getElementsByClassName('g-recaptcha-response')[0].value";
-
-            string response = await wvRC.ExecuteScriptAsync(script);
-            string encodedResponse = response.Replace("\"", "");
-            string secretKey = "6LfSN8YjAAAAAMt5kyHcwU8nX5d6xsAAV3bLYq3e";
-
-            string url = $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={encodedResponse}";
-
-            using (WebClient client = new WebClient())
+            if (!captcha)
             {
-                string result = client.DownloadString(url);
-                JObject json = JObject.Parse(result);
-                bool success = (bool)json["success"];
-                Debug.WriteLine(success);
+                string script = "document.getElementsByClassName('g-recaptcha-response')[0].value";
 
-                if (success)
+                string response = await wvRC.ExecuteScriptAsync(script);
+                string encodedResponse = response.Replace("\"", "");
+                string secretKey = "6LfSN8YjAAAAAMt5kyHcwU8nX5d6xsAAV3bLYq3e";
+
+                string url = $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={encodedResponse}";
+
+                using (WebClient client = new WebClient())
                 {
-                    captcha = true;
-                    Debug.WriteLine($"Captcha bool: {captcha}");
-                }
-                else
-                {
-                    captcha = false;
-                    Debug.WriteLine($"Captcha bool: {captcha}");
+                    string result = client.DownloadString(url);
+                    JObject json = JObject.Parse(result);
+                    bool success = (bool)json["success"];
+                    Debug.WriteLine(success);
+
+                    if (success)
+                    {
+                        captcha = true;
+                        Debug.WriteLine($"Captcha bool: {captcha}");
+                    }
+                    else
+                    {
+                        captcha = false;
+                        Debug.WriteLine($"Captcha bool: {captcha}");
+                    }
                 }
             }
 
@@ -252,6 +255,13 @@ namespace CyberBezpieczenstwo.PopUpForms
         private void Validator_Load(object sender, EventArgs e)
         {
             wvRC.Source = new Uri("https://recaptcha.tiiny.site/");
+        }
+
+        private void buttonIMGCaptcha_Click(object sender, EventArgs e)
+        {
+            CaptchaForm captcha = new CaptchaForm(this);
+            captcha.Show();
+            this.Enabled = false;
         }
     }
 
