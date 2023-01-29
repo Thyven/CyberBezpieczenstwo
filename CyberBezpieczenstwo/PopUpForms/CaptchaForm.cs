@@ -43,7 +43,7 @@ namespace CyberBezpieczenstwo.PopUpForms
 
         // Get random panel image to be correct
         static private Random r = new Random();
-        int correctPanel = r.Next(0, 8);
+        int correctPanel = r.Next(0, 3);
 
         // Reverse control main form
         private Validator validator;
@@ -51,14 +51,9 @@ namespace CyberBezpieczenstwo.PopUpForms
         List<Images> colorPalette = new List<Images>
             {
                 new Images { ID = 0, text = "Pociągi", imageSet = FillImageList(@"IMG\Train\")},
-                new Images { ID = 1, text = "Auta",  imageSet = FillImageList(@"IMG\Train\") },
-                new Images { ID = 2, text = "Państwa lewantu", imageSet = FillImageList(@"IMG\Train\")},
-                new Images { ID = 3, text = "1", imageSet = FillImageList(@"IMG\Train\") },
-                new Images { ID = 4, text = "2", imageSet = FillImageList(@"IMG\Train\")},
-                new Images { ID = 5, text = "3", imageSet = FillImageList(@"IMG\Train\") },
-                new Images { ID = 6, text = "4", imageSet = FillImageList(@"IMG\Train\") },
-                new Images { ID = 7, text = "5", imageSet = FillImageList(@"IMG\Train\")},
-                new Images { ID = 8, text = "6", imageSet = FillImageList(@"IMG\Train\") }
+                new Images { ID = 1, text = "Auta",  imageSet = FillImageList(@"IMG\Auto\") },
+                new Images { ID = 2, text = "Rowery", imageSet = FillImageList(@"IMG\bike\")},
+                new Images { ID = 3, text = "Busy", imageSet = FillImageList(@"IMG\bus\") }
             };
 
 
@@ -115,7 +110,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         private Images RandomImages()
         {
             squareCountter++;
-            int index = rand.Next(0, 8);
+            int index = rand.Next(0, 3);
             if (squareCountter == 14) colorPalette[index] = colorPalette[correctPanel];
             return colorPalette[index];
         }
@@ -123,7 +118,7 @@ namespace CyberBezpieczenstwo.PopUpForms
         static public List<Image> FillImageList(string directory)
         {
             List<Image> imageSet = new List<Image>();
-            string[] jpgFiles = Directory.GetFiles(directory, "*.jpg");
+            string[] jpgFiles = Directory.GetFiles(directory, "*.*");
 
             for (int i = 0; i < jpgFiles.Length; i++)
             {
@@ -132,7 +127,6 @@ namespace CyberBezpieczenstwo.PopUpForms
             }
             return imageSet;
         }
-
 
         private void OnSquareClick(object sender, EventArgs e)
         {
