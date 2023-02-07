@@ -21,7 +21,8 @@ namespace CyberBezpieczenstwo
 
         public bool isRegexNeeded = true;
         public int oneTimePasswordValueX = 20;
-
+        public string aktywator = "Wakacje2022";
+        public int liczbaUzyc = 5;
         public void Refresh()
         {
             labelUsername.Text = loggedUser.username;
@@ -418,10 +419,62 @@ namespace CyberBezpieczenstwo
             MessageBox.Show("OTP has been created!", "OTP information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        static string Decrypt(string message, int shift)
+        {
+            char[] messageArray = message.ToCharArray();
+            for (int i = 0; i < messageArray.Length; i++)
+            {
+                int charValue = (int)messageArray[i];
+                if (charValue >= 65 && charValue <= 90)
+                {
+                    charValue = 65 + ((charValue - 65 + (26 - shift)) % 26);
+                }
+                else if (charValue >= 97 && charValue <= 122)
+                {
+                    charValue = 97 + ((charValue - 97 + (26 - shift)) % 26);
+                }
+                messageArray[i] = (char)charValue;
+            }
+            return new string(messageArray);
+        }
+
         private void LogButton_Click(object sender, EventArgs e)
         {
 
             Process.Start("notepad.exe", Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Log.txt");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (liczbaUzyc > 0)
+            {
+                Process.Start("notepad.exe", Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Log.txt");
+                liczbaUzyc -= 1;
+            }
+            else
+            {
+                MessageBox.Show("Wersja Trail sie skonczyla");
+            }
+
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+        private void textBox2Activate_TextChanged(object sender, EventArgs e)
+        {
+        }
+        private void activate_Click(object sender, EventArgs e)
+        {
+            var cezarstring = Decrypt(textBox2Activate.Text, 2);
+            if (cezarstring == aktywator)
+            {
+                liczbaUzyc = 9999;
+                textBox2Activate.Text = "Kod poprawny";
+            }
+            else
+            {
+                textBox2Activate.Text = "Kod niepoprawny!!";
+            }
         }
     }
 }

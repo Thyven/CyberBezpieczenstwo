@@ -56,6 +56,10 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.setOneTimePasswordButton = new System.Windows.Forms.Button();
             this.LogButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.activate = new System.Windows.Forms.Button();
+            this.textBox2Activate = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -316,7 +320,7 @@
             // labelTest
             // 
             this.labelTest.AutoSize = true;
-            this.labelTest.Location = new System.Drawing.Point(53, 285);
+            this.labelTest.Location = new System.Drawing.Point(749, 405);
             this.labelTest.Name = "labelTest";
             this.labelTest.Size = new System.Drawing.Size(27, 15);
             this.labelTest.TabIndex = 26;
@@ -350,11 +354,52 @@
             this.LogButton.Visible = false;
             this.LogButton.Click += new System.EventHandler(this.LogButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 96);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "Edit Text";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(99, 96);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(369, 136);
+            this.textBox1.TabIndex = 31;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // activate
+            // 
+            this.activate.Location = new System.Drawing.Point(18, 318);
+            this.activate.Name = "activate";
+            this.activate.Size = new System.Drawing.Size(75, 23);
+            this.activate.TabIndex = 32;
+            this.activate.Text = "Activate!";
+            this.activate.UseVisualStyleBackColor = true;
+            this.activate.Click += new System.EventHandler(this.activate_Click);
+            // 
+            // textBox2Activate
+            // 
+            this.textBox2Activate.Location = new System.Drawing.Point(99, 318);
+            this.textBox2Activate.Name = "textBox2Activate";
+            this.textBox2Activate.Size = new System.Drawing.Size(239, 23);
+            this.textBox2Activate.TabIndex = 33;
+            this.textBox2Activate.TextChanged += new System.EventHandler(this.textBox2Activate_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox2Activate);
+            this.Controls.Add(this.activate);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.LogButton);
             this.Controls.Add(this.setOneTimePasswordButton);
             this.Controls.Add(this.labelTest);
@@ -420,5 +465,9 @@
         public System.Windows.Forms.Timer timer;
         private Button setOneTimePasswordButton;
         private Button LogButton;
+        private Button button1;
+        private TextBox textBox1;
+        private Button activate;
+        private TextBox textBox2Activate;
     }
 }
